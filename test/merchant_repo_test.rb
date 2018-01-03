@@ -8,9 +8,23 @@ class MerchantRepoTest < MiniTest::Test
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv'
       })
-    @items = @sales_engine.merchant_repo
+    @merchants = @sales_engine.merchant_repo
   end
 
-  deft
+  def test_that_it_finds_all_by_price_range
+    assert_equal "", merchants.find_all_by_price_in_range(500, 2200)
+  end
+
+  def test_that_it
+
+  end
+
+  def test_that_it
+
+  end
+
+  def test_that_it
+
+  end
 
 end

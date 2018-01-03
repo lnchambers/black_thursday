@@ -17,8 +17,8 @@ class MerchantRepo
 
   end
 
-  def find_by_id
-
+  def find_by_id(id)
+    
   end
 
   def find_by_name
