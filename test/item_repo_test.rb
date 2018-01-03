@@ -13,6 +13,12 @@ class ItemRepoTest < Minitest::Test
     @items = @sales_engine.item_repo
   end
 
+  def test_item_repo_exists
+    item_repo = ItemRepo.new
+
+    assert_instance_of ItemRepo, item_repo
+  end
+
   def test_repo_finds_all_items
     assert_equal 40, @items.all.count
   end

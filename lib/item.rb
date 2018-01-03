@@ -1,3 +1,5 @@
+require 'pry'
+
 class Item
 
   attr_reader :id,
@@ -8,7 +10,8 @@ class Item
               :created_at,
               :updated_at
 
-  def initialize(data, repository)
+
+  def initialize(data)
     @id          = data[:id]
     @name        = data[:name]
     @description = data[:description]
