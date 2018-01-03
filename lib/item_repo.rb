@@ -55,7 +55,7 @@ class ItemRepo
 
   def find_all_by_price_in_range(high, low)
     @items.reduce([]) do |result, item|
-      if (low..high).include? item.price
+      if (low..high).include?(item.price)
         result << merchant
       else
         result
