@@ -18,12 +18,12 @@ class ItemRepo
   end
 
   def all
-    items.values
+    return @items
   end
 
   def find_by_id(id)
     @items.map do |item|
-      return item if item.id == id
+      return item if item.id.to_i == id
     end
   end
 
@@ -36,7 +36,7 @@ class ItemRepo
   def find_all_with_description(description)
     @items.reduce([]) do |result, item|
       if item.description == description
-        result << merchant
+        result << item
       else
         result
       end
@@ -46,7 +46,7 @@ class ItemRepo
   def find_all_by_price(price)
     @items.reduce([]) do |result, item|
       if item.price == price
-        result << merchant
+        result << item
       else
         result
       end
