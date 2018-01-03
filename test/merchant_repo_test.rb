@@ -9,9 +9,11 @@ class MerchantRepoTest < MiniTest::Test
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv'
       })
-    @merchants = @sales_engine.merchant_repo
+    @merchants = @sales_engine.merchants
   end
-  
+
+
+
   def test_find_merchant_by_id
     merchant = @merchants.find_by_id("1")
 

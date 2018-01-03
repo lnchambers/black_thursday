@@ -10,9 +10,9 @@ class ItemRepo
   include CreateElements
 
   def initialize(data, parent)
-    @items = create_elements(data).reduce({}) do |item_collection, item|
-      item_collection[item[:id].to_i] = Item.new(item)
-      # item_collection
+    @items = create_elements(data).reduce([]) do |result, item|
+      result << Item.new(item)
+      result
     end
     @parent = parent
   end

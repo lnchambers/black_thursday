@@ -17,7 +17,7 @@ class MerchantRepo
   end
 
   def all
-    @merchants
+    return @merchants
   end
 
   def find_by_id(id)

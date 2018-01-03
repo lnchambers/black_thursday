@@ -10,7 +10,7 @@ class ItemRepoTest < Minitest::Test
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv'
       })
-    @items = @sales_engine.item_repo
+    @items = @sales_engine.items
   end
 
   def test_item_repo_exists
