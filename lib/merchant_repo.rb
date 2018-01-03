@@ -34,7 +34,7 @@ class MerchantRepo
 
   def find_all_by_name(name)
     @merchants.reduce([]) do |result, merchant|
-      if merchant.name == name
+      if merchant.name.downcase == name.downcase
         result << merchant
       else
         result

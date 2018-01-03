@@ -35,7 +35,7 @@ class ItemRepo
 
   def find_all_with_description(description)
     @items.reduce([]) do |result, item|
-      if item.description == description
+      if item.description.downcase == description.downcase
         result << merchant
       else
         result
