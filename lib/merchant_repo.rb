@@ -31,9 +31,8 @@ class MerchantRepo
   end
 
   def find_all_by_name(name)
-    @merchants.values.find do |result, merchant|
-      result << merchant[1] if merchant[1].name == name
-      result
+    @merchants.values.find_all do |merchant|
+      merchant.name.downcase.include? name.downcase
     end
   end
 end
