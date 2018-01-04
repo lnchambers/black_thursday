@@ -13,25 +13,22 @@ class MerchantRepoTest < MiniTest::Test
   end
 
   def test_find_merchant_by_id
-    merchant = @merchants.find_by_id("1")
+    desired_merchant1 = @merchants.merchants["1"]
 
-    assert_instance_of Merchant, merchant
-    assert_equal "1", merchant.id
+    assert_equal desired_merchant1, @merchants.find_by_id(1)
   end
 
   def test_find_merchant_by_name
-    merchant = @merchants.find_by_name(" jejum")
+    desired_merchant1 = @merchants.merchants["7"]
 
-    assert_instance_of Merchant, merchant
-    assert_equal " jejum", merchant.name
+    assert_equal desired_merchant1, @merchants.find_by_name("jejum")
   end
 
   def test_find_all_merchants_by_name
-    merchant = @merchants.find_all_by_name(" Uniford")
+    merchant = @merchants.find_all_by_name("Uniford")
 
     assert_equal 2, merchant.count
-    assert_equal " Uniford", merchant[0].name
-    assert_equal " Uniford", merchant[1].name
+    assert_equal "Uniford", merchant[0].name
+    assert_equal "Uniford", merchant[1].name
   end
-
 end

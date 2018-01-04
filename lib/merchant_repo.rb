@@ -9,37 +9,32 @@ class MerchantRepo
               :parent
 
   def initialize(data, parent)
-    @merchants = create_elements(data).reduce([]) do |result, merchant|
-      result << Merchant.new(merchant)
-      result
+    @merchants = {}
+    create_elements(data).each do |row|
+      @merchants[row[:id]] = Merchant.new(row)
     end
     @parent = parent
   end
 
   def all
-    @merchants
+    return @merchants
   end
 
   def find_by_id(id)
-    @merchants.map do |merchant|
-      return merchant if merchant.id == id
-    end
+    @merchants[id.to_s]
   end
 
   def find_by_name(name)
-    @merchants.map do |merchant|
-      return merchant if merchant.name == name
+    @merchants.each do |merchant|
+      return merchant[1] if merchant[1].name == name
     end
   end
 
   def find_all_by_name(name)
-    @merchants.reduce([]) do |result, merchant|
-      if merchant.name == name
-        result << merchant
-      else
-        result
-      end
+    found_merchants = []
+    @merchants.each do |merchant|
+      found_merchants << merchant[1] if merchant[1].name == name
     end
+    found_merchants
   end
-
 end

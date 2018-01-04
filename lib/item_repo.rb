@@ -10,52 +10,45 @@ class ItemRepo
   include CreateElements
 
   def initialize(data, parent)
-    @items = create_elements(data).reduce({}) do |item_collection, item|
-      item_collection[item[:id].to_i] = Item.new(item)
-      # item_collection
+    @items = {}
+    create_elements(data).each do |row|
+      @items[row[:id]] = Item.new(row)
     end
     @parent = parent
   end
 
   def all
-    items.values
+    return @items
   end
 
   def find_by_id(id)
-    @items.map do |item|
-      return item if item.id == id
-    end
+    @items[id.to_s]
   end
 
   def find_by_name(name)
-    @items.map do |item|
-      return item if item.name == name
+    @items.values.reduce([]) do |result, item|
+      result << item if item.name == name
+      result
     end
   end
 
   def find_all_with_description(description)
-    @items.reduce([]) do |result, item|
-      if item.description == description
-        result << merchant
-      else
-        result
-      end
+    @items.values.reduce([]) do |result, item|
+      result << item if item.description == description
+      result
     end
   end
 
   def find_all_by_price(price)
-    @items.reduce([]) do |result, item|
-      if item.price == price
-        result << merchant
-      else
-        result
-      end
+    @items.values.reduce([]) do |result, item|
+      result << item if item.unit_price.to_i == price
+      result
     end
   end
 
-  def find_all_by_price_in_range(high, low)
+  def find_all_by_price_in_range(low, high)
     @items.reduce([]) do |result, item|
-      if (low..high).include?(item.price)
+      if item.unit_price.include?(low.to_i..high.to_i)#(item.unit_price)
         result << merchant
       else
         result

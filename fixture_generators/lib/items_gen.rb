@@ -61,7 +61,7 @@ UNIT_PRICE = [2200, 11999, 7000, 900, 845, 4455, 99222, 585223, 22111, 4422, 555
   end
 
   def output
-    puts "#{@id}, #{@name}, #{@description}, #{@unit_price}, #{@merchant_id}, #{@created_at}, #{@updated_at} "
+    puts "#{@id},#{@name},#{@description},#{@unit_price},#{@merchant_id},#{@created_at},#{@updated_at}"
   end
 
 end
