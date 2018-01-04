@@ -13,7 +13,7 @@ class Item
 
 
   def initialize(data)
-    @id          = data[:id]
+    @id          = data[:id].to_i
     @name        = data[:name]
     @description = data[:description]
     @unit_price  = BigDecimal.new(data[:unit_price])
