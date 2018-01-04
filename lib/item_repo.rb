@@ -12,7 +12,7 @@ class ItemRepo
   def initialize(data, parent)
     @items = {}
     create_elements(data).each do |row|
-      @items[row[:id]] = Item.new(row)
+      @items[row[:id].to_i] = Item.new(row)
     end
     @parent = parent
   end
