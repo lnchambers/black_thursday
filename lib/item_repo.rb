@@ -12,6 +12,7 @@ class ItemRepo
   def initialize(data, parent)
     @items = create_elements(data).reduce({}) do |result, item|
       result[item[:id].to_i] = Item.new(item)
+      require "pry"; binding.pry
       result
     end
     @parent = parent
