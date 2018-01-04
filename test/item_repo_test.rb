@@ -30,7 +30,7 @@ class ItemRepoTest < Minitest::Test
   def test_find_by_name
     desired_item1 = @items.items["1"]
 
-    assert_equal [desired_item1], @items.find_by_name("Tiny Toaster")
+    assert_equal desired_item1, @items.find_by_name("Tiny Toaster")
   end
 
   def test_find_by_item_description

@@ -58,7 +58,6 @@ class ItemRepo
   def find_all_by_merchant_id(merchant_id)
     @items.reduce([]) do |result, item|
       if item[1].merchant_id == merchant_id
-        # require "pry"; binding.pry
         result << item[1]
       else
         result
