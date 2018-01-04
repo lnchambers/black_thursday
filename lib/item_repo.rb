@@ -18,7 +18,7 @@ class ItemRepo
   end
 
   def all
-    return @items
+    return @items.values
   end
 
   def find_by_id(id)
@@ -38,15 +38,14 @@ class ItemRepo
   end
 
   def find_all_by_price(price)
-    @items.values.reduce([]) do |result, item|
-      result << item if item.unit_price.to_i == price
-      result
+    @items.values.find_all do |item|
+      item.unit_price.include? price
     end
   end
 
-  def find_all_by_price_in_range(low, high)
+  def find_all_by_price_in_range(range)
     @items.reduce([]) do |result, item|
-      if item.unit_price.include?(low.to_i..high.to_i)
+      if range.include? item.unit_price
         result << merchant
       else
         result
