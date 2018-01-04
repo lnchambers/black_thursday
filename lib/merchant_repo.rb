@@ -12,7 +12,7 @@ class MerchantRepo
   def initialize(data, parent)
     @merchants = {}
     create_elements(data).each do |row|
-      @merchants[row[:id].to_i] = Merchant.new(row, parent)
+      @merchants[row[:id].to_i] = Merchant.new(row, self)
     end
     @parent = parent
   end
