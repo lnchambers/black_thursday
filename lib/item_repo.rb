@@ -12,13 +12,13 @@ class ItemRepo
   def initialize(data, parent)
     @items = {}
     create_elements(data).each do |row|
-      @items[row[:id]] = Item.new(row)
+      @items[row[:id].to_i] = Item.new(row)
     end
     @parent = parent
   end
 
   def all
-    return @items
+    return @items.values
   end
 
   def find_by_id(id)
@@ -33,34 +33,25 @@ class ItemRepo
 
   def find_all_with_description(description)
     @items.values.find_all do |item|
-      item.name.downcase.include? name.downcase
+      item.description.downcase.include? description.downcase
     end
   end
 
   def find_all_by_price(price)
-    @items.values.reduce([]) do |result, item|
-      result << item if item.unit_price.to_i == price
-      result
+    @items.values.find_all do |item|
+      item.unit_price.to_s.include? price.to_s
     end
   end
 
-  def find_all_by_price_in_range(low, high)
-    @items.reduce([]) do |result, item|
-      if item.unit_price.include?(low.to_i..high.to_i)
-        result << merchant
-      else
-        result
-      end
+  def find_all_by_price_in_range(range)
+      @items.values.find_all do |item|
+        range.include? item.unit_price.to_s
     end
   end
 
   def find_all_by_merchant_id(merchant_id)
-    @items.reduce([]) do |result, item|
-      if item.merchant_id == merchant_id
-        result << merchant
-      else
-        result
-      end
+    @items.values.find_all do |item|
+      item.merchant_id == merchant_id
     end
   end
 
