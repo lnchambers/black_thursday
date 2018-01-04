@@ -26,9 +26,8 @@ class ItemRepo
   end
 
   def find_by_name(name)
-    @items.values.reduce([]) do |result, item|
-      result << item if item.name == name
-      result
+    @items.values.find do |item|
+      return item if item.name.downcase.include? name.downcase
     end
   end
 
