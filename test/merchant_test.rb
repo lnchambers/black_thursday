@@ -6,7 +6,7 @@ class MerchantTest < Minitest::Test
 
   def setup
     repository = stub(repository: "repository")
-    @merchant = Merchant.new({id: "1", name: "Cornelius",
+    @merchant ||= Merchant.new({id: "1", name: "Cornelius",
                               created_at: "13:02", updated_at: "13:03"}, repository)
   end
 

@@ -10,7 +10,7 @@ class Merchant
               :repository
 
 
-  def initialize(data)
+  def initialize(data, repository)
     @id         = data[:id].to_i
     @name       = data[:name]
     @created_at = data[:created_at]

@@ -41,4 +41,13 @@ class MerchantRepo
       merchant.name.downcase.include? name.downcase
     end
   end
+
+  def find_item_by_merchant_id(id)
+    @parent.items.find_all_by_merchant_id(id)
+  end
+
+  def inspect
+  "#<#{self.class} #{@merchants.size} rows>"
+  end
+
 end
