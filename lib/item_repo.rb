@@ -10,10 +10,9 @@ class ItemRepo
   include CreateElements
 
   def initialize(data, parent)
-    @items = create_elements(data).reduce({}) do |result, item|
-      result[item[:id].to_i] = Item.new(item)
-      require "pry"; binding.pry
-      result
+    @items = {}
+    create_elements(data).each do |row|
+      @items[row[:id]] = Item.new(row)
     end
     @parent = parent
   end
@@ -23,34 +22,27 @@ class ItemRepo
   end
 
   def find_by_id(id)
-    @items.map do |item|
-      return item if item.id.to_i == id
-    end
+    @items[id.to_s]
   end
 
   def find_by_name(name)
-    @items.map do |item|
-      return item if item.name == name
+    @items.values.reduce([]) do |result, item|
+      result << item if item.name == name
+      result
     end
   end
 
   def find_all_with_description(description)
-    @items.reduce([]) do |result, item|
-      if item.description == description
-        result << item
-      else
-        result
-      end
+    @items.values.reduce([]) do |result, item|
+      result << item if item.description == description
+      result
     end
   end
 
   def find_all_by_price(price)
-    @items.reduce([]) do |result, item|
-      if item.unit_price.to_i == price
-        result << item
-      else
-        result
-      end
+    @items.values.reduce([]) do |result, item|
+      result << item if item.unit_price.to_i == price
+      result
     end
   end
 

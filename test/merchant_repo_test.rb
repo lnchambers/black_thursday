@@ -12,8 +12,6 @@ class MerchantRepoTest < MiniTest::Test
     @merchants = @sales_engine.merchants
   end
 
-
-
   def test_find_merchant_by_id
     desired_merchant1 = @merchants.merchants["1"]
 
