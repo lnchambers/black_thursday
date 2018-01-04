@@ -11,7 +11,7 @@ class MerchantRepo
   def initialize(data, parent)
     @merchants = {}
     create_elements(data).each do |row|
-      @merchants[row[:id]] = Merchant.new(row)
+      @merchants[row[:id].to_i] = Merchant.new(row)
     end
     @parent = parent
   end
@@ -21,17 +21,17 @@ class MerchantRepo
   end
 
   def find_by_id(id)
-    @merchants[id.to_s]
+    @merchants[id]
   end
 
   def find_by_name(name)
-    @merchants.each do |merchant|
-      return merchant[1] if merchant[1].name == name
+    @merchants.values.find do |merchant|
+      return merchant if merchant.name.downcase.include? name.downcase
     end
   end
 
   def find_all_by_name(name)
-    @merchants.reduce([]) do |result, merchant|
+    @merchants.values.find do |result, merchant|
       result << merchant[1] if merchant[1].name == name
       result
     end

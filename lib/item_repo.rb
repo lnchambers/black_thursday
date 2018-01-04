@@ -22,7 +22,7 @@ class ItemRepo
   end
 
   def find_by_id(id)
-    @items[id.to_s]
+    @items[id]
   end
 
   def find_by_name(name)
