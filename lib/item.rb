@@ -28,4 +28,7 @@ class Item
     (@unit_price.to_f / 100).to_s
   end
 
+  def merchants
+    repository.merchant(@id)
+  end
 end

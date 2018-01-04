@@ -22,6 +22,10 @@ class ItemRepo
     return @items.values
   end
 
+  def merchant(id)
+    @parent.merchant(id)
+  end
+
   def find_by_id(id)
     @items[id]
   end
