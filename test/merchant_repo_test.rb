@@ -15,20 +15,20 @@ class MerchantRepoTest < MiniTest::Test
 
 
   def test_find_merchant_by_id
-    merchant = @merchants.find_by_id("1")
+    desired_merchant1 = @merchants[0]
 
-    assert_instance_of Merchant, merchant
-    assert_equal "1", merchant.id
+    assert_equal desired_merchant1, merchant.find_by_id(1)
   end
 
   def test_find_merchant_by_name
-    merchant = @merchants.find_by_name(" jejum")
+    merchant = @merchants.find_by_name("jejum")
 
     assert_instance_of Merchant, merchant
-    assert_equal " jejum", merchant.name
+    assert_equal "jejum", merchant.name
   end
 
   def test_find_all_merchants_by_name
+    skip
     merchant = @merchants.find_all_by_name(" Uniford")
 
     assert_equal 2, merchant.count
@@ -37,6 +37,7 @@ class MerchantRepoTest < MiniTest::Test
   end
 
   def test_that_it_finds_all_by_price_range
+    skip
     assert_equal "", merchants.find_all_by_price_in_range(500, 2200)
   end
 

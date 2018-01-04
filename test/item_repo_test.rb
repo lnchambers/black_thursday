@@ -39,4 +39,21 @@ class ItemRepoTest < Minitest::Test
     assert_equal [desired_item1], @items.find_all_with_description("oh my full!")
   end
 
+  def test_find_all_by_price
+    desired_item1 = @items.items[1]
+    desired_item2 = @items.items[16]
+
+    assert_equal [desired_item1, desired_item2], @items.find_all_by_price(900)
+  end
+
+  def test_find_all_by_unit_prince_in_range
+    skip
+    desired_item1 = @items.items[0]
+    desired_item2 = @items.items[2]
+    desired_item3 = @items.items[9]
+
+    assert_equal [desired_item1, desired_item2,
+       desired_item3], @items.find_all_by_unit_price_in_range(6900, 7000)
+  end
+
 end

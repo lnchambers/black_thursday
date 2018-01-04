@@ -10,8 +10,8 @@ class ItemRepo
   include CreateElements
 
   def initialize(data, parent)
-    @items = create_elements(data).reduce([]) do |result, item|
-      result << Item.new(item)
+    @items = create_elements(data).reduce({}) do |result, item|
+      result[item[:id].to_i] = Item.new(item)
       result
     end
     @parent = parent
@@ -45,7 +45,7 @@ class ItemRepo
 
   def find_all_by_price(price)
     @items.reduce([]) do |result, item|
-      if item.price == price
+      if item.unit_price.to_i == price
         result << item
       else
         result
@@ -53,9 +53,9 @@ class ItemRepo
     end
   end
 
-  def find_all_by_price_in_range(high, low)
+  def find_all_by_price_in_range(low, high)
     @items.reduce([]) do |result, item|
-      if (low..high).include?(item.price)
+      if item.unit_price.include?(low.to_i..high.to_i)#(item.unit_price)
         result << merchant
       else
         result
