@@ -9,7 +9,8 @@ class Item
               :unit_price,
               :merchant_id,
               :created_at,
-              :updated_at
+              :updated_at,
+              :repository
 
 
   def initialize(data)
@@ -20,6 +21,7 @@ class Item
     @merchant_id = data[:merchant_id].to_i
     @created_at  = data[:created_at]
     @updated_at  = data[:updated_at]
+    @repository  = repository
   end
 
   def unit_price_to_dollars

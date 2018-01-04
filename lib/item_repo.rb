@@ -1,6 +1,7 @@
 require 'pry'
 
 require_relative 'item'
+require_relative 'sales_engine'
 require_relative 'create_elements'
 
 class ItemRepo
@@ -53,6 +54,10 @@ class ItemRepo
     @items.values.find_all do |item|
       item.merchant_id == merchant_id
     end
+  end
+
+  def inspect
+  "#<#{self.class} #{@items.size} rows>"
   end
 
 end
