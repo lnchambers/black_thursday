@@ -54,12 +54,8 @@ class ItemRepo
   end
 
   def find_all_by_merchant_id(merchant_id)
-    @items.reduce([]) do |result, item|
-      if item.merchant_id == merchant_id
-        result << merchant
-      else
-        result
-      end
+    @items.values.find_all do |item|
+      item.merchant_id == merchant_id
     end
   end
 
