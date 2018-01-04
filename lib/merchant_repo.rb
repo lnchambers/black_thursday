@@ -37,5 +37,4 @@ class MerchantRepo
     end
     found_merchants
   end
-
 end

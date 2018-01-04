@@ -33,20 +33,4 @@ class MerchantRepoTest < MiniTest::Test
     assert_equal "Uniford", merchant[0].name
     assert_equal "Uniford", merchant[1].name
   end
-
-  def test_that_it_finds_all_by_price_range
-    skip
-    assert_equal "", merchants.find_all_by_price_in_range(500, 2200)
-  end
-
-  def test_that_it
-    skip
-
-  end
-
-  def test_that_it
-    skip
-
-  end
-
 end
