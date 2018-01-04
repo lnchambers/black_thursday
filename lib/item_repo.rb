@@ -49,8 +49,8 @@ class ItemRepo
   end
 
   def find_all_by_price_in_range(range)
-      @items.values.find_all do |item|
-        range.include? item.unit_price.to_s
+    @items.values.find_all do |item|
+      range.include? item.unit_price
     end
   end
 
