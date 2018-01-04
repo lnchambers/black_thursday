@@ -25,19 +25,17 @@ class MerchantRepo
   end
 
   def find_by_name(name)
-    @merchants.select do |id, merchant|
-      merchant.name == name
+    @merchants.each do |merchant|
+      return merchant[1] if merchant[1].name == name
     end
   end
 
   def find_all_by_name(name)
-    @merchants.reduce([]) do |result, merchant|
-      if merchant.name == name
-        result << merchant
-      else
-        result
-      end
+    found_merchants = []
+    @merchants.each do |merchant|
+      found_merchants << merchant[1] if merchant[1].name == name
     end
+    found_merchants
   end
 
 end
