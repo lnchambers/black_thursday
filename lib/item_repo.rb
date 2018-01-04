@@ -44,7 +44,6 @@ class ItemRepo
   end
 
   def find_all_by_price_in_range(range)
-    binding.pry
       @items.values.find_all do |item|
         range.include? item.unit_price.to_s
     end
