@@ -23,8 +23,7 @@ class ItemRepoTest < Minitest::Test
     assert_equal 40, @items.all.count
   end
 
-  def test_items_order
-    assert_equal 1, @items.first.id
-  end
+  def test_find_by_item_id
+    desired_item1
 
 end
