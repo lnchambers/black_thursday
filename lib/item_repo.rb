@@ -32,9 +32,8 @@ class ItemRepo
   end
 
   def find_all_with_description(description)
-    @items.values.reduce([]) do |result, item|
-      result << item if item.description == description
-      result
+    @items.values.find_all do |item|
+      item.name.downcase.include? name.downcase
     end
   end
 
