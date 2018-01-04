@@ -29,4 +29,7 @@ class Item
     @unit_price * 1.0
   end
 
+  def merchants
+    repository.merchant(@id)
+  end
 end
