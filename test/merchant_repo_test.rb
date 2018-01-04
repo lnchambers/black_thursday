@@ -19,7 +19,7 @@ class MerchantRepoTest < MiniTest::Test
   end
 
   def test_find_merchant_by_name
-    desired_merchant1 = @merchants.merchants["7"]
+    desired_merchant1 = @merchants.merchants[7]
 
     assert_equal desired_merchant1, @merchants.find_by_name("jejum")
   end

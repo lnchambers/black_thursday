@@ -12,7 +12,7 @@ class MerchantRepo
   def initialize(data, parent)
     @merchants = {}
     create_elements(data).each do |row|
-      @merchants[row[:id]] = Merchant.new(row, parent)
+      @merchants[row[:id].to_i] = Merchant.new(row, parent)
     end
     @parent = parent
   end
@@ -22,7 +22,7 @@ class MerchantRepo
   end
 
   def find_by_id(id)
-    @merchants[id.to_s]
+    @merchants[id]
   end
 
   def find_item(id)
@@ -31,16 +31,14 @@ class MerchantRepo
   end
 
   def find_by_name(name)
-    @merchants.each do |merchant|
-      return merchant[1] if merchant[1].name == name
+    @merchants.values.find do |merchant|
+      return merchant if merchant.name.downcase.include? name.downcase
     end
   end
 
   def find_all_by_name(name)
-    found_merchants = []
-    @merchants.each do |merchant|
-      found_merchants << merchant[1] if merchant[1].name == name
+    @merchants.values.find_all do |merchant|
+      merchant.name.downcase.include? name.downcase
     end
-    found_merchants
   end
 end

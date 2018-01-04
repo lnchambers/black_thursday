@@ -13,8 +13,8 @@ class Item
               :repository
 
 
-  def initialize(data, repository)
-    @id          = data[:id]
+  def initialize(data)
+    @id          = data[:id].to_i
     @name        = data[:name]
     @description = data[:description]
     @unit_price  = BigDecimal.new(data[:unit_price])
