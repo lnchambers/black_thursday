@@ -27,7 +27,6 @@ class MerchantRepo
 
   def find_item(id)
     @parent.find_item_by_merchant_id
-    require "pry"; binding.pry
   end
 
   def find_by_name(name)
