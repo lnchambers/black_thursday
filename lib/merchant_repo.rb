@@ -9,9 +9,9 @@ class MerchantRepo
               :parent
 
   def initialize(data, parent)
-    @merchants = create_elements(data).reduce({}) do |result, merchant|
-      result[merchant[:id].to_i] = Merchant.new(merchant)
-      result
+    @merchants = {}
+    create_elements(data).each do |row|
+      @merchants[row[:id]] = Merchant.new(row)
     end
     @parent = parent
   end
@@ -21,13 +21,12 @@ class MerchantRepo
   end
 
   def find_by_id(id)
-    @merchants[id]
+    @merchants[id.to_s]
   end
 
   def find_by_name(name)
     @merchants.select do |id, merchant|
       merchant.name == name
-      # return merchant[id] if
     end
   end
 

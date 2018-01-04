@@ -15,12 +15,12 @@ class MerchantRepoTest < MiniTest::Test
 
 
   def test_find_merchant_by_id
-    desired_merchant1 = @merchants[0]
-
-    assert_equal desired_merchant1, merchant.find_by_id(1)
+    desired_merchant1 = @merchants.merchants["1"]
+    assert_equal desired_merchant1, @merchants.find_by_id(1)
   end
 
   def test_find_merchant_by_name
+    skip
     merchant = @merchants.find_by_name("jejum")
 
     assert_instance_of Merchant, merchant
@@ -42,10 +42,12 @@ class MerchantRepoTest < MiniTest::Test
   end
 
   def test_that_it
+    skip
 
   end
 
   def test_that_it
+    skip
 
   end
 
