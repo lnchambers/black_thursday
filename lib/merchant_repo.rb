@@ -1,5 +1,6 @@
 require 'pry'
 require_relative 'merchant'
+require_relative 'sales_engine'
 require_relative 'create_elements'
 
 class MerchantRepo
@@ -17,11 +18,16 @@ class MerchantRepo
   end
 
   def all
-    return @merchants
+    return @merchants.values
   end
 
   def find_by_id(id)
     @merchants[id.to_s]
+  end
+
+  def find_item(id)
+    @parent.find_item_by_merchant_id
+    require "pry"; binding.pry
   end
 
   def find_by_name(name)

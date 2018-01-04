@@ -1,4 +1,5 @@
 require 'pry'
+require_relative 'merchant_repo'
 
 class Merchant
 
@@ -14,6 +15,10 @@ class Merchant
     @created_at = data[:created_at]
     @updated_at = data[:updated_at]
     @repository = repository
+  end
+
+  def items
+    repository.find_item(@id)
   end
 
 end

@@ -2,10 +2,12 @@ require './test/test_helper'
 require './lib/item'
 
 class ItemTest < Minitest::Test
-
+  attr_reader :repository
+  
   def setup
+    @repository = repository
     @item = Item.new({id: "1", name: "Brian", description: "What what", unit_price: 5000,
-             merchant_id: 123, created_at: "13:02", updated_at: "13:03"})
+             merchant_id: 123, created_at: "13:02", updated_at: "13:03"}, repository)
   end
 
   def test_item_exists

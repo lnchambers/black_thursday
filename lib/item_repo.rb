@@ -18,7 +18,7 @@ class ItemRepo
   end
 
   def all
-    return @items
+    return @items.values
   end
 
   def find_by_id(id)
