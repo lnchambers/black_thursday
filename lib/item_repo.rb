@@ -39,13 +39,13 @@ class ItemRepo
 
   def find_all_by_price(price)
     @items.values.find_all do |item|
-      item.unit_price.include? price
+      item.unit_price.to_s.include? price.to_s
     end
   end
 
   def find_all_by_price_in_range(range)
     @items.reduce([]) do |result, item|
-      if range.include? item.unit_price
+      if range.include? item[1].unit_price.to_i
         result << merchant
       else
         result
