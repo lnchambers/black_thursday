@@ -14,7 +14,7 @@ class Item
               :repository
 
 
-  def initialize(data)
+  def initialize(data, repository)
     @id          = data[:id].to_i
     @name        = data[:name]
     @description = data[:description]
@@ -27,6 +27,10 @@ class Item
 
   def unit_price_to_dollars
     @unit_price.to_f
+  end
+
+  def merchant
+    @repository.find_merchant(@merchant_id)
   end
 
 end

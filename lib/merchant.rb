@@ -20,7 +20,7 @@ class Merchant
   end
 
   def items
-    repository.find_item(@id)
+    @repository.find_item(@id)
   end
 
 end
