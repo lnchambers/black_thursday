@@ -19,13 +19,15 @@ class SalesAnalyst
   end
 
   def average_items_per_merchant_standard_deviation
-    mean = merchants.all.map do |merchant|
-     mean_calculation(merchant)
-    end
-    total_div = mean.count - 1
-    variance = mean.sum / total_div
-    Math.sqrt(variance).round(2)
+    calculate_stdev
   end
+
+  def merchants_with_high_item_count
+    merchants.merchants.values.find_all do |merchant|
+      merchant.items.count > (calculate_stdev * 2)
+    end
+  end
+
 
   def average_item_price_for_merchant(merchant_id)
     item_per_merchant = @sales_engine.find_item_by_merchant_id(merchant_id)
@@ -53,4 +55,14 @@ class SalesAnalyst
   def mean_calculation(merchant)
     (items.find_all_by_merchant_id(merchant.id).count - average_items_per_merchant) ** 2
   end
+
+  def calculate_stdev
+    mean = merchants.all.map do |merchant|
+      mean_calculation(merchant)
+    end
+    total_div = mean.count - 1
+    variance = mean.sum / total_div
+    Math.sqrt(variance).round(2)
+  end
+
 end
