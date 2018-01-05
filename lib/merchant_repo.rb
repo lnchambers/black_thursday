@@ -26,7 +26,7 @@ class MerchantRepo
   end
 
   def find_item(id)
-    @parent.find_item_by_merchant_id
+    @parent.find_item_by_merchant_id(id)
   end
 
   def find_by_name(name)
