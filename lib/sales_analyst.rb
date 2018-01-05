@@ -39,7 +39,7 @@ class SalesAnalyst
 
   def average_item_price_standard_deviation
     mean = items.all.map do |item|
-      item.unit_price
+      item.unit_price ** 2
     end
     calculate_stdev(mean)
   end
