@@ -84,7 +84,7 @@ class SalesAnalystTest < Minitest::Test
     })
     sa = SalesAnalyst.new(sales_engine)
 
-    assert_equal "", sa.average_item_price_standard_deviation
+    assert_equal 18.23, sa.average_item_price_standard_deviation
   end
 
 end
