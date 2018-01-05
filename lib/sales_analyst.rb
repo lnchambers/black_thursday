@@ -18,8 +18,11 @@ class SalesAnalyst
     @sales_engine.items.all.count.to_f
   end
 
-  def i_so_pale
-    system('say ~ I so pale')
+  def average_items_per_merchant_standard_deviation
+    average_items_per_merchant
+    @sales_engine.merchants.all.map do |merchant|
+    @sales_engine.items.find_all_by_merchant_id(merchant.id).count - average_items_per_merchant
+    end
   end
 
   def average_item_price_for_merchant(merchant_id)
