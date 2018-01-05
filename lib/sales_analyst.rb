@@ -29,7 +29,7 @@ class SalesAnalyst
     end
     total_div = mean.count - 1
     variance = mean.sum / total_div
-    stdev = Math.sqrt(variance).round(2)
+    Math.sqrt(variance).round(2)
   end
 
   def average_item_price_for_merchant(merchant_id)
