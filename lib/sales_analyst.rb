@@ -25,15 +25,19 @@ class SalesAnalyst
     end
   end
 
+  def average_item_price_for_merchant(merchant_id)
+    item_per_merchant = @sales_engine.find_item_by_merchant_id(merchant_id)
+    total = item_per_merchant.sum do |price|
+      price.unit_price
+    end
+    (total / item_per_merchant.count).round(2)
+  end
+
+  def average_average_price_per_merchant
+    total = @sales_engine.merchants.all.sum do |merchant|
+      average_item_price_for_merchant(merchant.id)
+    end
+    (total / @sales_engine.merchants.all.count).round(2)
+  end
 
 end
-
-# it would be nice to have a hash collection where each merchant
-# would be a value where the key is their merchant ID
-
-# then we would want to iterate over this collection and make another
-# hash where the number of items each merchant has is the key and the
-# merchant is the value
-
-# then we turn the keys of each merchant into its own array and subtract the mean
-# amount of items from the total
