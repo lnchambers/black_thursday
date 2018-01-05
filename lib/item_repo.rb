@@ -1,5 +1,4 @@
 require 'pry'
-
 require_relative 'item'
 require_relative 'sales_engine'
 require_relative 'create_elements'
@@ -21,6 +20,7 @@ class ItemRepo
   def all
     return @items.values
   end
+
 
   def find_merchant(id)
     @parent.find_merchants(id)
