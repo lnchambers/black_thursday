@@ -44,6 +44,7 @@ class SalesAnalyst
     calculate_stdev(mean)
   end
 
+
   def average_item_price_for_merchant(merchant_id)
     item_per_merchant = @sales_engine.find_item_by_merchant_id(merchant_id)
     total = item_per_merchant.sum do |price|
@@ -70,6 +71,7 @@ class SalesAnalyst
   def mean_calculation_merchant(merchant)
     (items.find_all_by_merchant_id(merchant.id).count - average_items_per_merchant) ** 2
   end
+
 
   def calculate_stdev(mean)
     total_div = mean.count - 1
