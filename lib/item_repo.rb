@@ -1,5 +1,4 @@
 require 'pry'
-
 require_relative 'item'
 require_relative 'sales_engine'
 require_relative 'create_elements'
@@ -13,13 +12,18 @@ class ItemRepo
   def initialize(data, parent)
     @items = {}
     create_elements(data).each do |row|
-      @items[row[:id].to_i] = Item.new(row)
+      @items[row[:id].to_i] = Item.new(row, self)
     end
     @parent = parent
   end
 
   def all
     return @items.values
+  end
+
+
+  def find_merchant(id)
+    @parent.find_merchants(id)
   end
 
   def find_by_id(id)
