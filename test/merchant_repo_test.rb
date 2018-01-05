@@ -33,9 +33,9 @@ class MerchantRepoTest < MiniTest::Test
   end
 
   def test_find_item_by_merch_id
-    desired_item1 = @sales_engine.items.items["1"]
-    desired_item2 = @sales_engine.items.items["16"]
-    desired_item3 = @sales_engine.items.items["34"]
-    assert_equal [desired_item1, desired_item2, desired_item3], @merchants.find_item_by_merchant_id("36")
+    desired_item1 = @sales_engine.items.items[1]
+    desired_item2 = @sales_engine.items.items[16]
+    desired_item3 = @sales_engine.items.items[34]
+    assert_equal [desired_item1, desired_item2, desired_item3], @merchants.find_item_by_merchant_id(36)
   end
 end
