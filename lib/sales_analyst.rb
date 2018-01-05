@@ -18,11 +18,6 @@ class SalesAnalyst
     @sales_engine.items.all.count.to_f
   end
 
-  # def items_per_merchant TODO
-  #   @sales_engine.merchants.map do |merchant|
-  #
-  # end
-
   def average_items_per_merchant_standard_deviation
     mean = merchants.all.map do |merchant|
      mean_calculation(merchant)
