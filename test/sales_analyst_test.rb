@@ -27,7 +27,7 @@ class SalesAnalystTest < Minitest::Test
     })
     sa = SalesAnalyst.new(sales_engine)
 
-    assert_equal 40, sa.total_items
+    assert_equal 40.0, sa.total_items
   end
 
   def test_find_average_items_per_merchant
@@ -37,7 +37,17 @@ class SalesAnalystTest < Minitest::Test
     })
     sa = SalesAnalyst.new(sales_engine)
 
-    assert_equal 1, sa.average_items_per_merchant
+    assert_equal 1.0, sa.average_items_per_merchant
+  end
+
+  def test_find_average_items_per_merchant_stdev
+    sales_engine = SalesEngine.from_csv({
+      :items     => "./test/fixtures/item_fixture.csv",
+      :merchants => "./test/fixtures/merchant_fixture.csv",
+    })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_equal 1.0, sa.average_items_per_merchant_standard_deviation
   end
 
 end
