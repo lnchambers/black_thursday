@@ -38,7 +38,6 @@ class SalesAnalyst
   def golden_items
     mean = all_items_price / total_items
     all_items.values.find_all do |item|
-      require "pry"; binding.pry
       item.unit_price > (mean + average_item_price_standard_deviation * 2)
     end
   end
