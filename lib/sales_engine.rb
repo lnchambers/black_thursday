@@ -9,6 +9,7 @@ class SalesEngine
   def initialize(data)
     @items = ItemRepo.new(data[:items], self)
     @merchants = MerchantRepo.new(data[:merchants], self)
+    @invoices = InvoiceRepo.new(data[:invoices], self)
   end
 
   def self.from_csv(data)
