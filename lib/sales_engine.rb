@@ -15,7 +15,7 @@ class SalesEngine
     SalesEngine.new(data)
   end
 
-  def merchant(id)
+  def find_merchants(id)
     merchants.find_by_id(id)
   end
 
