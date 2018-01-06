@@ -46,7 +46,7 @@ class MerchantRepo
   end
 
   def find_invoice(id)
-    @repository.find_invoices(id)
+    @parent.find_invoices(id)
   end
 
   def inspect
