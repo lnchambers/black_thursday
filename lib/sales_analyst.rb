@@ -32,18 +32,26 @@ class SalesAnalyst
   end
 
   def golden_items
+    total = items.all.sum do |item|
+      item.unit_price
+    end
+    mean = total / items.all.count
     items.items.values.find_all do |item|
-      item.unit_price > ((average_item_price_standard_deviation * 2) * 2)
+      item.unit_price > (mean + average_item_price_standard_deviation * 2)
     end
   end
 
   def average_item_price_standard_deviation
-    mean = items.all.map do |item|
+    total = items.all.sum do |item|
       item.unit_price
     end
-    calculate_stdev(mean)
+    mean = total / items.all.count
+    variance = items.all.map do |item|
+      (item.unit_price - mean) ** 2
+    end.sum
+    stdev = variance / items.all.count
+    Math.sqrt(stdev).round(2)
   end
-
 
   def average_item_price_for_merchant(merchant_id)
     item_per_merchant = @sales_engine.find_item_by_merchant_id(merchant_id)
@@ -72,10 +80,8 @@ class SalesAnalyst
     (items.find_all_by_merchant_id(merchant.id).count - average_items_per_merchant) ** 2
   end
 
-
   def calculate_stdev(mean)
-    total_div = mean.count - 1
-    variance = mean.sum / total_div
+    variance = mean.sum / (mean.count - 1)
     Math.sqrt(variance).round(2)
   end
 end
