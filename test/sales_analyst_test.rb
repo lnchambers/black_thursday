@@ -14,6 +14,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv({
       :items     => "./test/fixtures/item_fixture.csv",
       :merchants => "./test/fixtures/merchant_fixture.csv",
+      :invoices  => "./test/fixtures/invoice_fixture.csv"
     })
     sa = SalesAnalyst.new(sales_engine)
 
@@ -24,6 +25,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv({
       :items     => "./test/fixtures/item_fixture.csv",
       :merchants => "./test/fixtures/merchant_fixture.csv",
+      :invoices  => "./test/fixtures/invoice_fixture.csv"
     })
     sa = SalesAnalyst.new(sales_engine)
 
@@ -34,6 +36,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv({
       :items     => "./test/fixtures/item_fixture.csv",
       :merchants => "./test/fixtures/merchant_fixture.csv",
+      :invoices  => "./test/fixtures/invoice_fixture.csv"
     })
     sa = SalesAnalyst.new(sales_engine)
 
@@ -44,6 +47,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv({
       :items     => "./test/fixtures/item_fixture.csv",
       :merchants => "./test/fixtures/merchant_fixture.csv",
+      :invoices  => "./test/fixtures/invoice_fixture.csv"
     })
     sa = SalesAnalyst.new(sales_engine)
 
@@ -54,6 +58,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv({
       :items     => "./test/fixtures/item_fixture.csv",
       :merchants => "./test/fixtures/merchant_fixture.csv",
+      :invoices  => "./test/fixtures/invoice_fixture.csv"
     })
     sa = SalesAnalyst.new(sales_engine)
     merchants = sales_engine.merchants
@@ -81,10 +86,11 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv({
       :items     => "./test/fixtures/item_fixture.csv",
       :merchants => "./test/fixtures/merchant_fixture.csv",
+      :invoices  => "./test/fixtures/invoice_fixture.csv"
     })
     sa = SalesAnalyst.new(sales_engine)
 
-    assert_equal 18.23, sa.average_item_price_standard_deviation
+    assert_equal 925.95, sa.average_item_price_standard_deviation
   end
 
 end

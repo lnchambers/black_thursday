@@ -1,6 +1,6 @@
 require_relative 'sales_engine'
-require_relative 'merchant_analyst_mod'
-require_relative 'item_analyst_mod'
+require_relative 'merchant_analyst'
+require_relative 'item_analyst'
 
 class SalesAnalyst
   include MerchantAnalyst
@@ -19,15 +19,13 @@ class SalesAnalyst
   end
 
   def average_items_per_merchant_standard_deviation
-    mean = merchants.all.map do |merchant|
-      mean_calculation_merchant(merchant)
-    end
-    calculate_stdev(mean)
+    calculate_stdev(merchant_mean)
   end
 
   def merchants_with_high_item_count
+    merchant_stdev = average_items_per_merchant_standard_deviation
     all_merchants.values.find_all do |merchant|
-      merchant.items.count > (average_items_per_merchant_standard_deviation * 2)
+      merchant.items.count > (merchant_stdev * 2)
     end
   end
 
@@ -36,9 +34,10 @@ class SalesAnalyst
   end
 
   def golden_items
-    mean = all_items_price / total_items
+    item_stdev = calculate_item_stdev
+    item_mean = item_price_mean
     all_items.values.find_all do |item|
-      item.unit_price > (mean + average_item_price_standard_deviation * 2)
+      item.unit_price > (item_mean + item_stdev * 2)
     end
   end
 
