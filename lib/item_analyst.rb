@@ -23,9 +23,9 @@ module ItemAnalyst
   end
 
   def item_variance
-    all_items.map do |item|
+    all_items.sum do |item|
     (item[1].unit_price - item_price_mean) ** 2
-    end.sum
+    end
   end
 
   def calculate_item_stdev

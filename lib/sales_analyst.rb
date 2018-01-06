@@ -1,10 +1,12 @@
 require_relative 'sales_engine'
 require_relative 'merchant_analyst'
 require_relative 'item_analyst'
+require_relative 'invoice_analyst'
 
 class SalesAnalyst
   include MerchantAnalyst
   include ItemAnalyst
+  include InvoiceAnalyst
 
   def initialize(sales_engine)
     @sales_engine = sales_engine
@@ -60,4 +62,13 @@ class SalesAnalyst
     variance = mean.sum / (mean.count - 1)
     Math.sqrt(variance).round(2)
   end
+
+  def average_invoices_per_merchant
+    (total_invoices / total_merchants).round(2)
+  end
+
+  def average_invoices_per_merchant_standard_deviation
+    calculate_invoice_stdev
+  end
+
 end
