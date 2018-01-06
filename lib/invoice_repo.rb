@@ -17,7 +17,7 @@ class InvoiceRepo
   end
 
   def find_by_id(id)
-    @invoices[id]
+    return @invoices[id]
   end
 
 end
