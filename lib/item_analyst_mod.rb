@@ -18,10 +18,6 @@ module ItemAnalyst
     end
   end
 
-  def item_price_mean
-    all_items_price / total_items
-  end
-
   def item_variance
     all_items.map do |item|
     (item[1].unit_price - item_price_mean) ** 2
