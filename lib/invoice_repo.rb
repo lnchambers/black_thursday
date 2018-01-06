@@ -32,6 +32,16 @@ class InvoiceRepo
     end
   end
 
+  def find_all_by_status(status)
+    @invoices.values.find_all do |invoices|
+      invoices.status == status
+    end
+  end
+
+  def find_merchant(id)
+    @parent.find_merchants(id)
+  end
+
   def inspect
   "#<#{self.class} #{@invoices.size} rows>"
   end
