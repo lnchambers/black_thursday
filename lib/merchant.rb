@@ -23,4 +23,8 @@ class Merchant
     @repository.find_item(@id)
   end
 
+  def invoices
+    @repository.find_invoice(@id)
+  end
+
 end
