@@ -12,4 +12,10 @@ module MerchantAnalyst
     @sales_engine.merchants.all.count.to_f
   end
 
+  def merchant_mean
+    merchants.all.map do |merchant|
+      mean_calculation_merchant(merchant)
+    end
+  end
+
 end
