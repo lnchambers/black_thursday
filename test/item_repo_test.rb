@@ -8,7 +8,8 @@ class ItemRepoTest < Minitest::Test
   def setup
     @sales_engine ||= SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
-      merchants: 'test/fixtures/merchant_fixture.csv'
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      :invoices  => './test/fixtures/invoice_fixture.csv'
       })
     @items ||= @sales_engine.items
   end
