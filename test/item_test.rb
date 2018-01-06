@@ -35,11 +35,11 @@ class ItemTest < Minitest::Test
   end
 
   def test_created_at_is_accurate
-    assert_equal Time.parse(@item.created_at), @item.created_at
+    assert_equal Time.parse("13:03"), @item.created_at
   end
 
   def test_updated_at_is_accurate
-    assert_equal Time.parse(@item.updated_at), @item.updated_at
+    assert_equal Time.parse("13:02"), @item.updated_at
   end
 
   def test_unit_price_to_dollars_returns_a_dollar_amount

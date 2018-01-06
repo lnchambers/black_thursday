@@ -21,7 +21,6 @@ class ItemRepo
     return @items.values
   end
 
-
   def find_merchant(id)
     @parent.find_merchants(id)
   end
