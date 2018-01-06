@@ -18,6 +18,12 @@ class ItemRepoTest < Minitest::Test
     assert_equal 40, @items.all.count
   end
 
+  def test_find_merchant_by_merchant_id
+    desired_merchant1 = @sales_engine.merchants.merchants[1]
+
+    assert_equal desired_merchant1, @items.find_merchant(1)
+  end
+
   def test_find_by_item_id
     desired_item1 = @items.items[1]
     desired_item2 = @items.items[2]
