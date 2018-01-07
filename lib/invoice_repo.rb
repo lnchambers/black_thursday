@@ -4,6 +4,8 @@ require_relative 'invoice'
 class InvoiceRepo
  include CreateElements
 
+ attr_reader :invoices
+
  def initialize(data, parent)
    @invoices = {}
    create_elements(data).each do |row|
@@ -43,7 +45,7 @@ class InvoiceRepo
  end
 
  def inspect
- "#<#{self.class} #{@invoices.size} rows>"
+  "#<#{self.class} #{@invoices.size} rows>"
  end
 
 end
