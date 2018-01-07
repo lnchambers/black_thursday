@@ -74,7 +74,15 @@ class SalesAnalyst
   def top_merchants_by_invoice_count
     stdev = calculate_invoice_stdev
     all_merchants.values.find_all do |merchant|
-      merchant.invoices.count > (invoice_mean + stdev * 2)
+      merchant.invoices.count > mean + stdev * 2
+    end
+  end
+
+  def bottom_merchants_by_invoice_count
+    stdev = calculate_invoice_stdev
+    mean = invoice_mean
+    all_merchants.values.find_all do |merchant|
+      merchant.invoices.length < mean - stdev * 2
     end
   end
 
