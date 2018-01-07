@@ -6,8 +6,7 @@ require_relative 'create_elements'
 class MerchantRepo
   include CreateElements
 
-  attr_reader :merchants,
-              :parent
+  attr_reader :merchants
 
   def initialize(data, parent)
     @merchants = {}
@@ -45,8 +44,12 @@ class MerchantRepo
     @parent.items.find_all_by_merchant_id(id)
   end
 
+  def find_invoice(id)
+    @parent.find_invoices(id)
+  end
+
   def inspect
-  "#<#{self.class} #{@merchants.size} rows>"
+    "#<#{self.class} #{merchants.size} rows>"
   end
 
 end

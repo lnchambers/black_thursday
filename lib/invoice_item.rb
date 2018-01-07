@@ -1,5 +1,5 @@
 require 'time'
- 
+
  class InvoiceItem
    attr_reader :id,
                :item_id,
@@ -18,7 +18,7 @@ require 'time'
      @created_at = Time.parse(data[:created_at])
      @updated_at = Time.parse(data[:updated_at])
    end
- 
+
    def unit_price_to_dollars
      @unit_price.to_f
    end
