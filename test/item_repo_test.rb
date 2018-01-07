@@ -68,4 +68,11 @@ class ItemRepoTest < Minitest::Test
        desired_item3], @items.find_all_by_price_in_range(range)
   end
 
+  def test_find_all_by_merchant_id
+    desired_item1 = @items.items[2]
+    desired_item2 = @items.items[38]
+
+    assert_equal [desired_item1, desired_item2], @items.find_all_by_merchant_id(1)
+  end
+
 end
