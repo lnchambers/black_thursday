@@ -71,5 +71,4 @@ class InvoiceRepoTest < Minitest::Test
 
     assert_equal desired_merchant, @invoices.find_merchant(1)
   end
-
 end

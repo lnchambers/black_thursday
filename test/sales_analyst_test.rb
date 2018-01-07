@@ -116,4 +116,5 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal 0.155e2, sa.average_item_price_for_merchant(1)
   end
+
 end
