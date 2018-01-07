@@ -2,7 +2,10 @@ require_relative 'create_elements'
 require_relative 'invoice'
 
 class InvoiceRepo
- include CreateElements
+  include CreateElements
+
+  attr_reader :invoices,
+              :parent
 
  attr_reader :invoices
 
