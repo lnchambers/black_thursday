@@ -30,7 +30,7 @@ class SalesAnalyst
   end
 
   def average_item_price_standard_deviation
-    Math.sqrt(item_stdev).round(2)
+    Math.sqrt(calculate_item_stdev).round(2)
   end
 
   def golden_items
