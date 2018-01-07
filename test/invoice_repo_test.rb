@@ -24,7 +24,7 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal desired_invoice, @invoices.find_by_id(1)
   end
 
-  def test_find_all_invoice_by_customer_id_method_returns_correct_invoice
+  def test_find_all_invoice_by_customer_id_method_returns_correct_invoices
     desired_invoice1 = @invoices.invoices[13]
     desired_invoice2 = @invoices.invoices[14]
     desired_invoice3 = @invoices.invoices[15]
@@ -33,8 +33,37 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal desired_invoices, @invoices.find_all_by_customer_id(3)
     desired_invoices.each do |invoice|
       assert_instance_of Invoice, invoice
-    end  
+    end
   end
 
+  def test_find_all_by_merchant_id_method_returns_correct_invoices
+    desired_invoice1 = @invoices.invoices[4]
+    desired_invoice2 = @invoices.invoices[11]
+    desired_invoices = [desired_invoice1, desired_invoice2]
+
+    assert_equal desired_invoices, @invoices.find_all_by_merchant_id(3)
+  end
+
+  def test_find_all_by_status_returns_correct_invoices
+    desired_invoice1 = @invoices.invoices[1]
+    desired_invoice2 = @invoices.invoices[4]
+    desired_invoice3 = @invoices.invoices[5]
+    desired_invoice4 = @invoices.invoices[6]
+    desired_invoice5 = @invoices.invoices[7]
+    desired_invoice6 = @invoices.invoices[10]
+    desired_invoice7 = @invoices.invoices[11]
+    desired_invoice8 = @invoices.invoices[14]
+    desired_invoice9 = @invoices.invoices[17]
+    desired_invoice10 = @invoices.invoices[23]
+    desired_invoice11 = @invoices.invoices[30]
+    desired_invoice12 = @invoices.invoices[35]
+    desired_invoice13 = @invoices.invoices[38]
+    desired_invoices = [desired_invoice1, desired_invoice2, desired_invoice3,
+    desired_invoice4, desired_invoice5, desired_invoice6, desired_invoice7,
+    desired_invoice8, desired_invoice9, desired_invoice10, desired_invoice11,
+    desired_invoice12, desired_invoice13]
+
+    assert_equal desired_invoices, @invoices.find_all_by_status(:pending)
+  end
 
 end
