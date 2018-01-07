@@ -1,6 +1,6 @@
 require 'pry'
-require_relative 'merchant_repo'
 require 'time'
+require_relative 'merchant_repo'
 
 class Merchant
 
@@ -21,6 +21,10 @@ class Merchant
 
   def items
     @repository.find_item(@id)
+  end
+
+  def invoices
+    @repository.find_invoice(@id)
   end
 
 end

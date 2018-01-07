@@ -18,25 +18,25 @@ class ItemRepo
   end
 
   def all
-    return @items.values
+    return items.values
   end
 
   def find_merchant(id)
-    @parent.find_merchants(id)
+    parent.find_merchants(id)
   end
 
   def find_by_id(id)
-    @items[id]
+    items[id]
   end
 
   def find_by_name(name)
-    @items.values.find do |item|
+    items.values.find do |item|
       return item if item.name.downcase.include? name.downcase
     end
   end
 
   def find_all_with_description(description)
-    @items.values.find_all do |item|
+    items.values.find_all do |item|
       item.description.downcase.include? description.downcase
     end
   end

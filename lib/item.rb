@@ -34,6 +34,6 @@ class Item
   end
 
   def merchants
-    repository.merchant(@id)
+    @repository.merchant(@id)
   end
 end
