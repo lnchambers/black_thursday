@@ -8,7 +8,7 @@ require 'time'
                :unit_price,
                :created_at,
                :updated_at
- 
+
    def initialize(data, repository)
      @id         = data[:id].to_i
      @item_id    = data[:item_id].to_i
