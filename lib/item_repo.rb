@@ -4,8 +4,15 @@ require_relative 'sales_engine'
 require_relative 'create_elements'
 
 class ItemRepo
+<<<<<<< HEAD
   attr_reader :items
     include CreateElements
+=======
+  attr_reader :items,
+              :parent
+
+  include CreateElements
+>>>>>>> 101b8d7ee86a49c4d7a7d1148d8c4b9c52df0ee3
 
   def initialize(data, parent)
     @items = {}

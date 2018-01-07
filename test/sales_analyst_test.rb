@@ -12,10 +12,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_find_total_merchants
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
 
     assert_equal 40, sa.total_merchants
@@ -23,10 +26,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_find_total_items
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
 
     assert_equal 40.0, sa.total_items
@@ -34,10 +40,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_find_average_items_per_merchant
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
 
     assert_equal 1.0, sa.average_items_per_merchant
@@ -45,10 +54,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_find_average_items_per_merchant_stdev
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
 
     assert_equal 0.96, sa.average_items_per_merchant_standard_deviation
@@ -56,10 +68,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_find_merchants_with_high_item_count
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
     merchants = sales_engine.merchants.merchants
     desired_merchant1 = merchants[1]
@@ -84,10 +99,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_average_item_price_standard_deviation
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
 
     assert_equal 30.43, sa.average_item_price_standard_deviation
@@ -95,10 +113,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_find_golden_items
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
     item = sales_engine.items.items
     desired_item1 = item[12]
@@ -108,10 +129,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_average_item_price_per_merchant
     sales_engine = SalesEngine.from_csv({
-      :items     => "./test/fixtures/item_fixture.csv",
-      :merchants => "./test/fixtures/merchant_fixture.csv",
-      :invoices  => "./test/fixtures/invoice_fixture.csv"
-    })
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
     sa = SalesAnalyst.new(sales_engine)
 
     assert_equal 0.155e2, sa.average_item_price_for_merchant(1)

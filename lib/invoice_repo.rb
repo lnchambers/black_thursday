@@ -7,8 +7,6 @@ class InvoiceRepo
   attr_reader :invoices,
               :parent
 
- attr_reader :invoices
-
  def initialize(data, parent)
    @invoices = {}
    create_elements(data).each do |row|
