@@ -17,5 +17,12 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal 40, @invoices.all.count
   end
 
+  def test_that_find_by_id_returns_invoice_by_id
+    desired_invoice = @invoices.invoices[1]
+
+    assert_instance_of Invoice, @invoices.find_by_id(1)
+    assert_equal desired_invoice, @invoices.find_by_id(1)
+  end
+
 
 end
