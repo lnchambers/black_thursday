@@ -18,18 +18,19 @@ module InvoiceAnalyst
     end
   end
 
-  def invoice_mean
-    all_invoices_by_merchant.sum / total_merchants
+  def calculate_invoice_stdev
+    Math.sqrt(invoice_variance / total_invoices)
   end
 
   def invoice_variance
-    all_invoices_by_merchant.map do |invoice|
-      (invoice - invoice_mean) ** 2
+    mean = invoice_mean
+    all_invoices_by_merchant.sum do |invoice|
+      (invoice - mean) ** 2
     end
   end
 
-  def calculate_invoice_stdev
-    Math.sqrt(invoice_variance / total_invoices)
+  def invoice_mean
+    all_invoices_by_merchant.sum / total_merchants
   end
 
 end
