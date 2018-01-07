@@ -62,7 +62,7 @@ class ItemRepoTest < Minitest::Test
     desired_item1 = @items.items[0]
     desired_item2 = @items.items[2]
     desired_item3 = @items.items[9]
-    range = ((0.6900).round(2)..(0.7000).round(2))
+    range = (((0.6900).round(2))..((0.7000).round(2)))
 
     assert_equal [desired_item1, desired_item2,
        desired_item3], @items.find_all_by_price_in_range(range)
