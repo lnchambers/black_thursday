@@ -66,4 +66,10 @@ class InvoiceRepoTest < Minitest::Test
     assert_equal desired_invoices, @invoices.find_all_by_status(:pending)
   end
 
+  def test_find_merchant_returns_correct_merchant
+    desired_merchant = @sales_engine.merchants.merchants[1]
+
+    assert_equal desired_merchant, @invoices.find_merchant(1)
+  end
+
 end
