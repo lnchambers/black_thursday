@@ -13,13 +13,13 @@ module InvoiceAnalyst
   end
 
   def all_invoices_by_merchant
-    all_invoices.values.map do |invoice|
-      (@sales_engine.find_invoices(invoice.merchant_id)).count
+    merchants.merchants.values.map do |merchant|
+      merchant.invoices.count
     end
   end
 
   def calculate_invoice_stdev
-    Math.sqrt(invoice_variance / total_invoices).round(2)
+    Math.sqrt(invoice_variance / total_merchants).round(2)
   end
 
   def invoice_variance
@@ -30,7 +30,7 @@ module InvoiceAnalyst
   end
 
   def invoice_mean
-    all_invoices_by_merchant.sum / total_invoices
+    total_invoices / total_merchants
   end
 
   def invoice_status(status)
@@ -41,6 +41,10 @@ module InvoiceAnalyst
     all_invoices.values.find_all do |invoice|
       invoice.status == status
     end
+  end
+
+  def top_days_by_invoice_count
+
   end
 
 end
