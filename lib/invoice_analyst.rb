@@ -19,7 +19,7 @@ module InvoiceAnalyst
   end
 
   def calculate_invoice_stdev
-    Math.sqrt(invoice_variance / total_invoices)
+    Math.sqrt(invoice_variance / total_invoices).round(2)
   end
 
   def invoice_variance
@@ -30,7 +30,7 @@ module InvoiceAnalyst
   end
 
   def invoice_mean
-    all_invoices_by_merchant.sum / total_merchants
+    all_invoices_by_merchant.sum / total_invoices
   end
 
 end
