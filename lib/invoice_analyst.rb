@@ -43,7 +43,7 @@ module InvoiceAnalyst
     end
   end
 
-  def top_days_by_invoice_count
+  def calculated_invoice_day_stdev
 
   end
 
