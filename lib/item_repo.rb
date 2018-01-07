@@ -5,8 +5,7 @@ require_relative 'create_elements'
 
 class ItemRepo
   attr_reader :items
-  
-  include CreateElements
+    include CreateElements
 
   def initialize(data, parent)
     @items = {}
