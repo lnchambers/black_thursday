@@ -17,9 +17,9 @@ class Transaction
     @credit_card_number          = data[:credit_card_number].to_i
     @credit_card_expiration_date = data[:credit_card_expiration_date].to_i
     @result                      = data[:result]
-    @created_at = data[:created_at]
-    @updated_at = data[:updatd_at]
-    @repository = repository
+    @created_at                  = data[:created_at]
+    @updated_at                  = data[:updated_at]
+    @repository                  = repository
   end
 
 end
