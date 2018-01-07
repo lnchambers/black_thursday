@@ -75,7 +75,7 @@ class SalesAnalyst
     stdev = calculate_invoice_stdev
     mean = invoice_mean
     all_merchants.values.find_all do |merchant|
-      merchant.invoices.count > (mean + (stdev * 2))
+      merchant.invoices.count > mean + stdev * 2
     end
   end
 
@@ -83,7 +83,7 @@ class SalesAnalyst
     stdev = calculate_invoice_stdev
     mean = invoice_mean
     all_merchants.values.find_all do |merchant|
-      merchant.invoices.count > (stdev * 2 - mean)
+      merchant.invoices.length > stdev * 2 - mean
     end
   end
 
