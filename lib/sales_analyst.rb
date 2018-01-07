@@ -17,7 +17,7 @@ class SalesAnalyst
   end
 
   def mean_calculation_merchant(merchant)
-    (total_items_per_merchant - average_items_per_merchant) ** 2
+    (total_items_per_merchant(merchant) - average_items_per_merchant) ** 2
   end
 
   def average_items_per_merchant_standard_deviation
@@ -73,6 +73,7 @@ class SalesAnalyst
 
   def top_merchants_by_invoice_count
     stdev = calculate_invoice_stdev
+    mean = invoice_mean
     all_merchants.values.find_all do |merchant|
       merchant.invoices.count > mean + stdev * 2
     end
