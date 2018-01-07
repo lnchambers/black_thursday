@@ -13,8 +13,8 @@ module InvoiceAnalyst
   end
 
   def all_invoices_by_merchant
-    all_invoices.values.map do |invoice|
-      (@sales_engine.find_invoices(invoice.merchant_id)).count
+    all_merchants.values.sum do |merchant|
+      merchant.invoices.count
     end
   end
 
@@ -24,13 +24,13 @@ module InvoiceAnalyst
 
   def invoice_variance
     mean = invoice_mean
-    all_invoices_by_merchant.sum do |invoice|
-      (invoice - mean) ** 2
+    all_merchants.values.sum do |merchant|
+      (merchant.invoices.count - mean) ** 2
     end
   end
 
   def invoice_mean
-    all_invoices_by_merchant.sum / total_invoices
+    all_invoices_by_merchant / total_invoices
   end
 
 end
