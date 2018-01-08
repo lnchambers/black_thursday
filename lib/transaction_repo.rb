@@ -35,4 +35,10 @@ class TransactionRepo
       transaction.credit_card_number == number
     end
   end
+
+  def find_all_by_result(result)
+    transactions.values.find_all do |transaction|
+      transaction.result == result
+    end
+  end
 end
