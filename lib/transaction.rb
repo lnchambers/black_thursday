@@ -16,11 +16,19 @@ class Transaction
     @id                          = data[:id].to_i
     @invoice_id                  = data[:invoice_id].to_i
     @credit_card_number          = data[:credit_card_number].to_i
-    @credit_card_expiration_date = data[:credit_card_expiration_date].to_i
+    @credit_card_expiration_date = data[:credit_card_expiration_date]
     @result                      = data[:result]
-    @created_at                  = data[:created_at]
-    @updated_at                  = data[:updated_at]
+    @created_at                  = Time.parse(data[:created_at])
+    @updated_at                  = Time.parse(data[:updated_at])
     @repository                  = repository
+  end
+
+  def find_by_id(id)
+    repository.find_by_id(id)
+  end
+
+  def find_all_by_invoice_id(invoice_id)
+    repository.find_all_by_invoice_id(invoice_id)
   end
 
 end
