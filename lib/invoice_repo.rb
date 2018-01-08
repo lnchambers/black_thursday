@@ -49,6 +49,10 @@ class InvoiceRepo
    parent.find_items_for_invoice(id)
  end
 
+ def find_all_invoice_items(id)
+   parent.find_all_invoice_items(id)
+ end
+
  def find_all_transactions(id)
    parent.find_transactions_for_invoice(id)
  end

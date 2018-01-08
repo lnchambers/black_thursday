@@ -42,12 +42,33 @@ class Invoice
     repository.find_all_items(id)
   end
 
+  def invoice_items
+    repository.find_all_invoice_items(id)
+  end
+
   def invoices
     repository.find_invoice(id)
   end
-  #
-  # def is_paid_in_full?
-  #   invoices.parent.
-  # end
+
+  def successful_transactions
+    transactions.each do |transaction|
+      return true if transaction.result == "success"
+    end
+  end
+
+  def is_paid_in_full?
+    if successful_transactions == true
+      true
+    else
+      false
+    end
+  end
+
+  def total
+    invoice_items.reduce(0) do |all_items, invoice|
+      all_items += (invoice.unit_price * invoice.quantity)
+    end
+  end
+
 
 end
