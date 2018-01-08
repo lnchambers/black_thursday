@@ -21,9 +21,9 @@ class MerchantTest < Minitest::Test
     assert_equal 1, transaction.id
     assert_equal 1, transaction.invoice_id
     assert_equal 1234567891234567, transaction.credit_card_number
-    assert_equal 1220, transaction.credit_card_expiration_date
+    assert_equal "1220", transaction.credit_card_expiration_date
     assert_equal "Paid", transaction.result
-    assert_equal "13:02", transaction.created_at
-    assert_equal "13:03", transaction.updated_at
+    assert_equal Time.parse("13:02"), transaction.created_at
+    assert_equal Time.parse("13:03"), transaction.updated_at
   end
 end
