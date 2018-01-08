@@ -16,6 +16,10 @@ class InvoiceItemRepo
    @parent = parent
  end
 
+ def from_csv(data)
+   InvoiceItemRepo.new(data)
+ end
+
  def all
    return invoice_items.values
  end
@@ -26,13 +30,13 @@ class InvoiceItemRepo
 
  def find_all_by_item_id(id)
    invoice_items.values.find_all do |invoice_item|
-     invoice_item.item_id.include?(invoice_item.item_id)
+     invoice_item.item_id == id
    end
  end
 
  def find_all_by_invoice_id(id)
    invoice_items.values.find_all do |invoice_item|
-     invoice_items.invoice_id.include?(invoice_item.invoice_id)
+     invoice_item.invoice_id == id
    end
  end
 
