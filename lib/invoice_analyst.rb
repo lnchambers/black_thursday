@@ -25,14 +25,10 @@ module InvoiceAnalyst
   end
 
   def invoice_variance
-    mean = invoice_mean
+    mean = mean(total_invoices, total_merchants)
     all_invoices_by_merchant.sum do |invoice|
       (invoice - mean) ** 2
     end
-  end
-
-  def invoice_mean
-    total_invoices / total_merchants
   end
 
   def invoice_status(status)
@@ -45,12 +41,8 @@ module InvoiceAnalyst
     end
   end
 
-  def invoice_day_mean
-    (total_invoices / 7)
-  end
-
   def invoice_day_variance
-    mean ||= invoice_day_mean
+    mean = mean(total_invoices, 7)
     transform_get_days.values.sum do |number|
       (number - mean) ** 2
     end
@@ -64,7 +56,6 @@ module InvoiceAnalyst
 
   def transform_get_days
     get_days.transform_values do |invoice|
-      require "pry"; binding.pry
       invoice.count
     end
   end

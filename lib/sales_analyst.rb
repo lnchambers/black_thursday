@@ -2,11 +2,13 @@ require_relative 'sales_engine'
 require_relative 'merchant_analyst'
 require_relative 'item_analyst'
 require_relative 'invoice_analyst'
+require_relative 'standard_deviation'
 
 class SalesAnalyst
   include MerchantAnalyst
   include ItemAnalyst
   include InvoiceAnalyst
+  include StandardDeviation
 
   def initialize(sales_engine)
     @sales_engine = sales_engine
@@ -73,7 +75,7 @@ class SalesAnalyst
 
   def top_merchants_by_invoice_count
     stdev = calculate_invoice_stdev
-    mean = invoice_mean
+    mean = mean(total_invoices, total_merchants)
     all_merchants.values.find_all do |merchant|
       merchant.invoices.count > mean + stdev * 2
     end
@@ -81,7 +83,7 @@ class SalesAnalyst
 
   def bottom_merchants_by_invoice_count
     stdev = calculate_invoice_stdev
-    mean = invoice_mean
+    mean = mean(total_invoices, total_merchants)
     all_merchants.values.find_all do |merchant|
       merchant.invoices.length < mean - stdev * 2
     end
@@ -89,7 +91,7 @@ class SalesAnalyst
 
   def top_days_by_invoice_count
     stdev = calculate_invoice_day_stdev
-    mean = invoice_day_mean
+    mean = mean(total_invoices, 7)
     transform_get_days.keep_if do |key|
        transform_get_days[key] > mean + stdev
     end.keys
