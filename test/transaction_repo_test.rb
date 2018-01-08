@@ -65,6 +65,23 @@ class TransactionRepoTest < MiniTest::Test
   end
 
   def test_successful_payment_tells_us_true_or_false_on_payments
+    refute transactions.successful_payment?(10)
+    assert transactions.successful_payment?(2)
+    refute transactions.successful_payment?('thisisnotanumber')
+  end
 
+  def test_find_all_by_result
+    assert_instance_of Array, transactions.find_all_by_result("success")
+    assert_instance_of Array, transactions.find_all_by_result("failed")
+    assert_instance_of Array, transactions.find_all_by_result("gobble")
+    assert_equal [], transactions.find_all_by_result("gobble")
+    assert_equal 0, transactions.find_all_by_result("gobble").count
+    assert_equal 32, transactions.find_all_by_result("success").count
+    assert_equal 8, transactions.find_all_by_result("failed").count
+  end
+
+  def test_find_invoices_for_transaction
+    assert_instance_of Invoice, transactions.find_invoices_for_transaction(1)
+    assert_equal 1, transactions.find_invoices_for_transaction(1).id
   end
 end
