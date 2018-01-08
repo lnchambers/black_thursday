@@ -21,39 +21,11 @@ module InvoiceAnalyst
   end
 
   def calculate_invoice_stdev
-    Math.sqrt(invoice_variance / total_merchants).round(2)
-  end
-
-  def invoice_variance
-    mean = invoice_mean
-    all_invoices_by_merchant.sum do |invoice|
-      (invoice - mean) ** 2
-    end
-  end
-
-  def invoice_mean
-    total_invoices / total_merchants
+    stdev(total_invoices, total_merchants, all_invoices_by_merchant)
   end
 
   def invoice_status(status)
     ((total_with_status(status).count / total_invoices) * 100).round(2)
-  end
-
-  def total_with_status(status)
-    all_invoices.values.find_all do |invoice|
-      invoice.status == status
-    end
-  end
-
-  def invoice_day_mean
-    (total_invoices / 7)
-  end
-
-  def invoice_day_variance
-    mean ||= invoice_day_mean
-    transform_get_days.values.sum do |number|
-      (number - mean) ** 2
-    end
   end
 
   def get_days
@@ -73,7 +45,7 @@ module InvoiceAnalyst
   end
 
   def calculate_invoice_day_stdev
-    Math.sqrt(invoice_day_variance / 6).round(2)
+    stdev(total_invoices, 7, transform_get_days.values)
   end
 
 end

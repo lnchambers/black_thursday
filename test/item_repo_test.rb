@@ -61,14 +61,15 @@ class ItemRepoTest < Minitest::Test
   end
 
   def test_find_all_by_price_in_range
-    skip # MUST come back to but is very annoying to test.
-    desired_item1 = @items.items[0]
-    desired_item2 = @items.items[2]
-    desired_item3 = @items.items[9]
-    range = (((0.6900).round(2))..((0.7000).round(2)))
+    desired_item1 = @items.items[12]
+    desired_item2 = @items.items[14]
+    desired_item3 = @items.items[26]
+    desired_item4 = @items.items[28]
+    desired_item5 = @items.items[35]
+    desired_items = [desired_item1, desired_item2, desired_item3, desired_item4, desired_item5]
+    range = (500..20000)
 
-    assert_equal [desired_item1, desired_item2,
-       desired_item3], @items.find_all_by_price_in_range(range)
+    assert_equal desired_items, @items.find_all_by_price_in_range(range)
   end
 
   def test_find_all_by_merchant_id
