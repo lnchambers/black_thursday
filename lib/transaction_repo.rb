@@ -19,4 +19,26 @@ class TransactionRepo
   def all
     transactions.values
   end
+
+  def find_by_id(id)
+    transactions[id]
+  end
+
+  def find_all_by_invoice_id(id)
+    transactions.values.find_all do |transaction|
+      transaction.invoice_id == id
+    end
+  end
+
+  def find_all_by_credit_card_number(number)
+    transactions.values.find_all do |transaction|
+      transaction.credit_card_number == number
+    end
+  end
+
+  def find_all_by_result(result)
+    transactions.values.find_all do |transaction|
+      transaction.result == result
+    end
+  end
 end

@@ -36,8 +36,8 @@ class InvoiceRepo
  end
 
  def find_all_by_status(status)
-   @invoices.values.find_all do |invoices|
-     invoices.status == status
+   @invoices.values.find_all do |invoice|
+     invoice.status == status
    end
  end
 
