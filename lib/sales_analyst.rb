@@ -66,7 +66,7 @@ class SalesAnalyst
   end
 
   def average_invoices_per_merchant
-    (total_invoices / total_merchants).round(2)
+    mean(total_invoices, total_merchants).round(2)
   end
 
   def average_invoices_per_merchant_standard_deviation
