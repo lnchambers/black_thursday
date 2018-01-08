@@ -103,4 +103,11 @@ class SalesAnalyst
     end.keys
   end
 
+  def total_revenue_by_date(date)
+    date = date.strftime("%D")
+    @sales_engine.invoice_items.invoice_items.values.find_all do |invoice_item|
+      invoice_item.created_at.strftime("%D") == date
+    end
+  end
+
 end
