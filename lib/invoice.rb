@@ -34,4 +34,8 @@ class Invoice
     repository.find_all_transactions(id)
   end
 
+  def customer
+    repository.find_all_customers(customer_id)
+  end
+
 end

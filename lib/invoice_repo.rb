@@ -53,6 +53,10 @@ class InvoiceRepo
    parent.find_transactions_for_invoice(id)
  end
 
+ def find_all_customers(id)
+   parent.find_customers_for_invoice(id)
+ end
+
  def inspect
   "#<#{self.class} #{@invoices.size} rows>"
  end
