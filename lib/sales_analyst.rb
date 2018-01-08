@@ -90,9 +90,9 @@ class SalesAnalyst
   def top_days_by_invoice_count
     stdev = calculate_invoice_day_stdev
     mean = invoice_day_mean
-    all_invoices.values.find_all do |invoice|
-      invoice.created_at > mean + stdev * 2
-    end
+    transform_get_days.keep_if do |key|
+       transform_get_days[key] > mean + stdev
+    end.keys
   end
 
 end
