@@ -28,4 +28,8 @@ class InvoiceItemTest < Minitest::Test
     assert_equal Time.parse("13:04"), invoice_item.updated_at
   end
 
+  def test_unit_price_to_dollars
+    assert_equal 20.00, invoice_item.unit_price_to_dollars
+  end
+
 end
