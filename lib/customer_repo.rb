@@ -23,4 +23,12 @@ class CustomerRepo
     customers[id]
   end
 
+  def find_all_by_first_name(first_name)
+    customers.values.find_all do |customer|
+      if customer.first_name.include?(first_name)
+        customer
+      end
+    end
+  end
+
 end

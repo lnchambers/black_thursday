@@ -32,4 +32,18 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal desired_customer, customers.find_by_id(2)
   end
 
+  def test_find_all_by_first_name_returns_correct_customers
+    assert_equal [], customers.find_all_by_first_name("hhHHhahahahahahahhhhh")
+
+    desired_customer1 = customers.customers[1]
+    desired_customer2 = customers.customers[2]
+    desired_customers = [desired_customer1, desired_customer2]
+
+    assert_instance_of Array, customers.find_all_by_first_name("Joey")
+    assert_equal desired_customers, customers.find_all_by_first_name("Joe")
+  end
+
 end
+
+# find_all_by_first_name - returns either [] or one or more matches which have a
+# first name matching the substring fragment supplied
