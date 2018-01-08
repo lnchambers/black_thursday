@@ -51,24 +51,18 @@ class Invoice
   end
 
   def successful_transactions
-    transactions.each do |transaction|
-      return true if transaction.result == "success"
+    transactions.any? do |transaction|
+      transaction.result == "success"
     end
   end
 
   def is_paid_in_full?
-    if successful_transactions == true
-      true
-    else
-      false
-    end
+    successful_transactions
   end
 
   def total
-    invoice_items.reduce(0) do |all_items, invoice|
-      all_items += (invoice.unit_price * invoice.quantity)
+    invoice_items.sum do |invoice|
+      invoice.unit_price * invoice.quantity
     end
   end
-
-
 end
