@@ -28,12 +28,6 @@ module InvoiceAnalyst
     ((total_with_status(status).count / total_invoices) * 100).round(2)
   end
 
-  def total_with_status(status)
-    all_invoices.values.find_all do |invoice|
-      invoice.status == status
-    end
-  end
-
   def get_days
     all_invoices.values.group_by do |invoice|
       invoice.created_at.strftime("%A")

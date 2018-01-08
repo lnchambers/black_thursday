@@ -5,7 +5,7 @@ module StandardDeviation
   end
 
   def variance(total, objects, population)
-    mean_for_variance = mean(total, total_objects)
+    mean_for_variance = mean(total, objects)
     population.sum do |populate|
       (populate - mean_for_variance) ** 2
     end
