@@ -31,4 +31,8 @@ class Transaction
     repository.find_all_by_invoice_id(invoice_id)
   end
 
+  def invoice
+    repository.find_invoices_for_transaction(invoice_id)
+  end
+
 end
