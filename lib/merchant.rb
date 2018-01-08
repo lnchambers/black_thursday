@@ -30,5 +30,4 @@ class Merchant
   def customers
     repository.find_customers(id)
   end
-
 end
