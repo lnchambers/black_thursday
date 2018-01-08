@@ -43,24 +43,24 @@ class ItemRepo
 
   def find_all_by_id(id)
     items.values.find_all do |item|
-      item.id.to_i.include? id.to_i
+      item.id.to_i == id.to_i
     end
   end
 
   def find_all_by_price(price)
-    @items.values.find_all do |item|
+    items.values.find_all do |item|
       item.unit_price.to_s.include? price.to_s
     end
   end
 
   def find_all_by_price_in_range(range)
-    @items.values.find_all do |item|
+    items.values.find_all do |item|
       range.include? item.unit_price
     end
   end
 
   def find_all_by_merchant_id(merchant_id)
-    @items.values.find_all do |item|
+    items.values.find_all do |item|
       item.merchant_id == merchant_id
     end
   end

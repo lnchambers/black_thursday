@@ -1,3 +1,5 @@
+require 'pry'
+
 module InvoiceAnalyst
 
   def invoices
@@ -43,8 +45,32 @@ module InvoiceAnalyst
     end
   end
 
-  def top_days_by_invoice_count
+  def invoice_day_mean
+    (total_invoices / 7)
+  end
 
+  def invoice_day_variance
+    mean ||= invoice_day_mean
+    transform_get_days.values.sum do |number|
+      (number - mean) ** 2
+    end
+  end
+
+  def get_days
+    all_invoices.values.group_by do |invoice|
+      invoice.created_at.strftime("%A")
+    end
+  end
+
+  def transform_get_days
+    get_days.transform_values do |invoice|
+      require "pry"; binding.pry
+      invoice.count
+    end
+  end
+
+  def calculate_invoice_day_stdev
+    Math.sqrt(invoice_day_variance / 6).round(2)
   end
 
 end
