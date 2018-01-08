@@ -152,7 +152,8 @@ class SalesAnalystTest < Minitest::Test
       })
     sa = SalesAnalyst.new(sales_engine)
 
-    assert_equal 5, sa.total_revenue_by_date(Time.parse("2012-03-26"))
+    assert_equal 0.249104e4, sa.total_revenue_by_date(Time.parse("2012-03-26"))
+    assert_equal 5, sa.get_invoice_items_for_revenue(Time.parse("2012-03-26").strftime("%D")).count
   end
 
 end
