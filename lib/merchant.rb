@@ -20,11 +20,15 @@ class Merchant
   end
 
   def items
-    @repository.find_item(id)
+    repository.find_item(id)
   end
 
   def invoices
-    @repository.find_invoice(id)
+    repository.find_invoice(id)
+  end
+
+  def customers
+    repository.find_customers(id)
   end
 
 end

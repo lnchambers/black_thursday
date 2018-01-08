@@ -41,4 +41,8 @@ class TransactionRepo
       transaction.result == result
     end
   end
+
+  def find_invoices_for_transaction(id)
+    parent.find_invoices_for_transaction(id)
+  end
 end
