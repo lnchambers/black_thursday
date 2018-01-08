@@ -63,4 +63,8 @@ class TransactionRepoTest < MiniTest::Test
 
     assert_equal desired_transactions, transactions.find_all_by_credit_card_number(4068631943231473)
   end
+
+  def test_successful_payment_tells_us_true_or_false_on_payments
+
+  end
 end
