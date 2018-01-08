@@ -16,6 +16,7 @@ class InvoiceRepoTest < Minitest::Test
   end
 
   def test_that_all_method_returns_all_invoices
+    assert_instance_of Array, @invoices.all
     assert_instance_of Invoice, @invoices.all.first
     assert_equal 40, @invoices.all.count
   end
