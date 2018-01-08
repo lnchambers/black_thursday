@@ -3,12 +3,9 @@ require './lib/invoice_repo'
 require './lib/sales_engine'
 
 class InvoiceItemRepoTest < Minitest::Test
-  attr_reader :invoice_items,
-              :parent,
-              :data
+  attr_reader :invoice_items
+  
   def setup
-    @parent = mock('parent')
-    @data = './test/fixtures/invoice_item_fixture.csv'
     @sales_engine ||= SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv',

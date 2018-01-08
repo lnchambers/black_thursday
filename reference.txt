@@ -1,2 +1,0 @@
-invoice.total returns the total $ amount of the invoice
-Note: Failed charges should never be counted in revenue totals or statistics.
