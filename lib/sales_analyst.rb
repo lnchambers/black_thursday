@@ -89,6 +89,12 @@ class SalesAnalyst
     end
   end
 
+  def total_with_status(status)
+    all_invoices.values.find_all do |invoice|
+      invoice.status == status
+    end
+  end
+
   def top_days_by_invoice_count
     stdev = calculate_invoice_day_stdev
     mean = mean(total_invoices, 7)
