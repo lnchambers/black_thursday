@@ -106,7 +106,7 @@ class SalesAnalyst
   def total_revenue_by_date(date)
     date = date.strftime("%D")
     get_invoice_items_for_revenue(date).pop.sum do |invoice_items|
-      invoice_items.unit_price
+      invoice_items.unit_price * invoice_items.quantity
     end
   end
 
