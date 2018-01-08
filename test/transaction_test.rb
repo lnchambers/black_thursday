@@ -1,7 +1,7 @@
 require './test/test_helper'
 require './lib/transaction'
 
-class MerchantTest < Minitest::Test
+class TransactionTest < Minitest::Test
   attr_reader :transaction
 
   def setup
