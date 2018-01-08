@@ -16,33 +16,33 @@ class InvoiceRepo
  end
 
  def all
-   return @invoices.values
+   return invoices.values
  end
 
  def find_by_id(id)
-   @invoices[id]
+   invoices[id]
  end
 
  def find_all_by_customer_id(id)
-   @invoices.values.find_all do |invoice|
+   invoices.values.find_all do |invoice|
      invoice.customer_id == id
    end
  end
 
  def find_all_by_merchant_id(id)
-   @invoices.values.find_all do |invoice|
+   invoices.values.find_all do |invoice|
      invoice.merchant_id == id
    end
  end
 
  def find_all_by_status(status)
-   @invoices.values.find_all do |invoice|
+   invoices.values.find_all do |invoice|
      invoice.status == status
    end
  end
 
  def find_merchant(id)
-   @parent.find_merchants(id)
+   parent.find_merchants(id)
  end
 
  def inspect

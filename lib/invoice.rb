@@ -23,7 +23,7 @@ class Invoice
   end
 
   def merchant
-    @repository.find_merchant(@merchant_id)
+    repository.find_merchant(merchant_id)
   end
 
 end
