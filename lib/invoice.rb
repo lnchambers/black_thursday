@@ -38,4 +38,31 @@ class Invoice
     repository.find_all_customers(customer_id)
   end
 
+  def items
+    repository.find_all_items(id)
+  end
+
+  def invoice_items
+    repository.find_all_invoice_items(id)
+  end
+
+  def invoices
+    repository.find_invoice(id)
+  end
+
+  def successful_transactions
+    transactions.any? do |transaction|
+      transaction.result == "success"
+    end
+  end
+
+  def is_paid_in_full?
+    successful_transactions
+  end
+
+  def total
+    invoice_items.sum do |invoice|
+      invoice.unit_price * invoice.quantity
+    end
+  end
 end

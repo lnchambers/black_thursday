@@ -36,6 +36,16 @@ class TransactionRepo
     end
   end
 
+  def successful_payment?(invoice_id)
+     find_all_by_invoice_id(invoice_id).find do |transaction|
+      if transaction.result == "success"
+        return true
+      else
+        return false
+      end
+    end
+  end
+
   def find_all_by_result(result)
     transactions.values.find_all do |transaction|
       transaction.result == result
@@ -44,5 +54,9 @@ class TransactionRepo
 
   def find_invoices_for_transaction(id)
     parent.find_invoices_for_transaction(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{transactions.size} rows>"
   end
 end

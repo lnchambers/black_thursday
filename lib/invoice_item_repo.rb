@@ -16,6 +16,10 @@ class InvoiceItemRepo
    @parent = parent
  end
 
+ def from_csv(data)
+   InvoiceItemRepo.new(data)
+ end
+
  def all
    return invoice_items.values
  end
