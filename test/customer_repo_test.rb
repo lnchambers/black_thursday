@@ -32,7 +32,7 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal desired_customer, customers.find_by_id(2)
   end
 
-  def test_find_all_by_first_name_returns_correct_customers
+  def test_find_all_by_first_name_returns_correct_customers_and_is_case_insensitive
     assert_equal [], customers.find_all_by_first_name("hhHHhahahahahahahhhhh")
 
     desired_customer1 = customers.customers[1]
@@ -43,7 +43,21 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal desired_customers, customers.find_all_by_first_name("Joe")
   end
 
-end
+  def test_find_all_by_last_name_returns_correct_customers_and_is_case_insensitive
+    assert_equal [], customers.find_all_by_last_name("hhHHhahahahahahahhhhh")
 
-# find_all_by_first_name - returns either [] or one or more matches which have a
-# first name matching the substring fragment supplied
+    desired_customer1 = customers.customers[1]
+    desired_customer2 = customers.customers[3]
+    desired_customer3 = customers.customers[13]
+    desired_customer4 = customers.customers[27]
+    desired_customers_normal = [desired_customer1, desired_customer2,
+                                desired_customer3]
+    desired_customers_edgecase = [desired_customer1, desired_customer2, desired_customer3,
+                                  desired_customer4]
+
+    assert_instance_of Array, customers.find_all_by_last_name("Toy")
+    assert_equal desired_customers_normal, customers.find_all_by_last_name("Toy")
+    assert_equal desired_customers_normal, customers.find_all_by_last_name("OY")
+    assert_equal desired_customers_edgecase, customers.find_all_by_last_name("To")
+  end
+end
