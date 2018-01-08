@@ -25,4 +25,42 @@ class TransactionRepoTest < MiniTest::Test
     assert_instance_of Transaction, transactions.transactions.values.first
     assert_instance_of SalesEngine, transactions.parent
   end
+
+  def test_all_retrives_all_instances_of_invoice_items
+    assert_equal 40, transactions.all.count
+    transactions.transactions.each do |transaction|
+      assert_instance_of Transaction, transaction[1]
+    end
+  end
+
+  def test_find_by_id_returns_correct_transaction
+    assert_nil transactions.find_by_id("jenkins")
+
+    desired_transaction1 = transactions.transactions[1]
+
+    assert_equal desired_transaction1, transactions.find_by_id(1)
+  end
+
+  def test_find_all_by_invoice_id_returns_correct_transactions
+    assert_equal [], transactions.find_all_by_invoice_id("kelly jjonesss")
+
+    desired_transaction1 = transactions.transactions[3]
+    desired_transaction2 = transactions.transactions[9]
+    desired_transaction3 = transactions.transactions[15]
+    desired_transaction4 = transactions.transactions[18]
+    desired_transactions = [desired_transaction1, desired_transaction2,
+                            desired_transaction3, desired_transaction4]
+
+    assert_equal desired_transactions, transactions.find_all_by_invoice_id(2)
+  end
+
+  def test_find_all_by_credit_card_number_returns_correct_transactions
+    assert_equal [], transactions.find_all_by_credit_card_number(:credit_card_number)
+
+    desired_transaction1 = transactions.transactions[1]
+    desired_transaction2 = transactions.transactions[2]
+    desired_transactions = [desired_transaction1, desired_transaction2]
+
+    assert_equal desired_transactions, transactions.find_all_by_credit_card_number(4068631943231473)
+  end
 end
