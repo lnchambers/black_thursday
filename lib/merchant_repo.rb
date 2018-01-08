@@ -42,11 +42,11 @@ class MerchantRepo
   end
 
   def find_item_by_merchant_id(id)
-    @parent.items.find_all_by_merchant_id(id)
+    parent.items.find_all_by_merchant_id(id)
   end
 
   def find_invoice(id)
-    @parent.find_invoices(id)
+    parent.find_invoices(id)
   end
 
   def inspect

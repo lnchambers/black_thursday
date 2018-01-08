@@ -41,6 +41,12 @@ class ItemRepo
     end
   end
 
+  def find_all_by_id(id)
+    items.values.find_all do |item|
+      item.id.to_i.include? id.to_i
+    end
+  end
+
   def find_all_by_price(price)
     @items.values.find_all do |item|
       item.unit_price.to_s.include? price.to_s

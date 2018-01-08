@@ -25,14 +25,12 @@ class InvoiceItemRepo
  end
 
  def find_all_by_item_id(id)
-   invoice_items.values.find_all do |invoice_item|
-     invoice_item.item_id.include?(invoice_item.item_id)
-   end
+   parent.items.find_all_by_id(id)
  end
 
  def find_all_by_invoice_id(id)
    invoice_items.values.find_all do |invoice_item|
-     invoice_items.invoice_id.include?(invoice_item.invoice_id)
+     invoice_item.include?(invoice_item.invoice_id)
    end
  end
 
