@@ -27,6 +27,18 @@ class Invoice
   end
 
   def items
+    repository.find_all_items(id)
+  end
+
+  def transactions
+    repository.find_all_transactions(id)
+  end
+
+  def customer
+    repository.find_all_customers(customer_id)
+  end
+
+  def items
     repository.find_all_items_by_id(id)
   end
 

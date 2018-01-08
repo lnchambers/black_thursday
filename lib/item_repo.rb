@@ -43,7 +43,7 @@ class ItemRepo
 
   def find_all_by_id(id)
     items.values.find_all do |item|
-      item.id.to_i == id.to_i
+      item.id == id
     end
   end
 

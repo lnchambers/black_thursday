@@ -23,14 +23,6 @@ class InvoiceRepo
    invoices[id]
  end
 
- def find_all_items_by_id(id)
-   parent.find_all_items_by_item_id(id)
- end
-
- def find_merchant(id)
-   parent.find_merchants(id)
- end
-
  def find_all_by_customer_id(id)
    invoices.values.find_all do |invoice|
      invoice.customer_id == id
@@ -49,17 +41,20 @@ class InvoiceRepo
    end
  end
 
- def find_transactions_by_invoice_id(id)
-   parent.find_transactions_by_invoice_id(id)
+ def find_merchant(id)
+   parent.find_merchants(id)
  end
 
- def find_paid_in_full(invoice_id)
-   parent.transactions.successful_payment?(invoice_id)
-   require "pry"; binding.pry
+ def find_all_items(id)
+   parent.find_items_for_invoice(id)
  end
 
- def is_paid_in_full?
-   find_paid_in_full(invoice_id)
+ def find_all_transactions(id)
+   parent.find_transactions_for_invoice(id)
+ end
+
+ def find_all_customers(id)
+   parent.find_customers_for_invoice(id)
  end
 
  def inspect

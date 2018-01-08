@@ -52,7 +52,7 @@ class TransactionRepo
     end
   end
 
-  def inspect
-    "#<#{self.class} #{transactions.size} rows>"
-  end
+def inspect
+  "#<#{self.class} #{transactions.size} rows>"
+end
 end
