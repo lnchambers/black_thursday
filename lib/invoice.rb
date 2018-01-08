@@ -26,12 +26,16 @@ class Invoice
     repository.find_merchant(merchant_id)
   end
 
-  def is_paid_in_full?
-    repository.find_paid_in_full(id)
+  def items
+    repository.find_all_items_by_id(id)
   end
 
-  def transactions
-    repository.find_transactions_by_invoice_id(id)
+  def invoices
+    repository.find_invoice(id)
   end
+  #
+  # def is_paid_in_full?
+  #   invoices.parent.
+  # end
 
 end

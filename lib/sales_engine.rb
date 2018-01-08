@@ -1,4 +1,4 @@
-require 'pry'
+  require 'pry'
 require_relative 'merchant_repo'
 require_relative 'item_repo'
 require_relative 'invoice_repo'
@@ -41,6 +41,10 @@ class SalesEngine
 
   def find_invoice_items(id)
     invoice_items.find_by_id(id)
+  end
+
+  def find_all_items_by_item_id(id)
+    items.find_all_by_id(id)
   end
 
   def find_transactions_by_invoice_id(id)

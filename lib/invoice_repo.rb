@@ -23,6 +23,14 @@ class InvoiceRepo
    invoices[id]
  end
 
+ def find_all_items_by_id(id)
+   parent.find_all_items_by_item_id(id)
+ end
+
+ def find_merchant(id)
+   parent.find_merchants(id)
+ end
+
  def find_all_by_customer_id(id)
    invoices.values.find_all do |invoice|
      invoice.customer_id == id
@@ -39,10 +47,6 @@ class InvoiceRepo
    invoices.values.find_all do |invoice|
      invoice.status == status
    end
- end
-
- def find_merchant(id)
-   parent.find_merchants(id)
  end
 
  def find_transactions_by_invoice_id(id)
