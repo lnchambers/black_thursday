@@ -2,48 +2,32 @@ require './test/test_helper'
 require './lib/item'
 
 class ItemTest < Minitest::Test
-  attr_reader :repository
+  attr_reader :item
 
   def setup
-    @repository = repository
-    @item = Item.new({id: "1", name: "Brian", description: "What what", unit_price: 5000,
-             merchant_id: 123, created_at: "13:03", updated_at: "13:02"}, repository)
+    repository = mock('repository')
+    data = {id: "1",
+            name: "Brian",
+            description: "What what",
+            unit_price: 5000,
+            merchant_id: 123,
+            created_at: "13:03",
+            updated_at: "13:02"}
+    @item = Item.new(data, repository)
   end
 
-  def test_item_exists
-    assert_instance_of Item, @item
+  def test_item_attributes
+    assert_instance_of Item, item
+    assert_equal 1, item.id
+    assert_equal "Brian", item.name
+    assert_equal "What what", item.description
+    assert_equal (BigDecimal.new(5000) / 100), item.unit_price
+    assert_equal 123, item.merchant_id
+    assert_equal Time.parse("13:03"), item.created_at
+    assert_equal Time.parse("13:02"), item.updated_at
   end
 
-  def test_id_is_accurate
-    assert_equal 1, @item.id
+  def test_unit_price_to_dollars_returns_dollar_amount
+    assert_equal 50.0, item.unit_price_to_dollars
   end
-
-  def test_name_is_accurate
-    assert_equal "Brian", @item.name
-  end
-
-  def test_description_is_accurate
-    assert_equal "What what", @item.description
-  end
-
-  def test_unit_price_is_accurate
-    assert_equal (BigDecimal.new(5000) / 100), @item.unit_price
-  end
-
-  def test_merchant_id_is_accurate
-    assert_equal 123, @item.merchant_id
-  end
-
-  def test_created_at_is_accurate
-    assert_equal Time.parse("13:03"), @item.created_at
-  end
-
-  def test_updated_at_is_accurate
-    assert_equal Time.parse("13:02"), @item.updated_at
-  end
-
-  def test_unit_price_to_dollars_returns_a_dollar_amount
-    assert_equal 50.0, @item.unit_price_to_dollars
-  end
-
 end
