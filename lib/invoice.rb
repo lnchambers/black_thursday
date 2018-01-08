@@ -39,7 +39,7 @@ class Invoice
   end
 
   def items
-    repository.find_all_items_by_id(id)
+    repository.find_all_items(id)
   end
 
   def invoices

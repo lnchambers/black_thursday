@@ -52,7 +52,11 @@ class TransactionRepo
     end
   end
 
-def inspect
-  "#<#{self.class} #{transactions.size} rows>"
-end
+  def find_invoices_for_transaction(id)
+    parent.find_invoices_for_transaction(id)
+  end
+
+  def inspect
+    "#<#{self.class} #{transactions.size} rows>"
+  end
 end
