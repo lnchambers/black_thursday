@@ -1,11 +1,11 @@
 module StandardDeviation
 
-  def mean(total_objects, total)
-    total_objects / total
+  def mean(total, total_objects)
+    total / total_objects
   end
 
-  def stdev
-
+  def stdev(variance, total)
+    Math.sqrt(variance / total).round(2)
   end
 
 end
