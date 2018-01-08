@@ -4,8 +4,9 @@ require_relative 'sales_engine'
 require_relative 'create_elements'
 
 class ItemRepo
-  attr_reader :items
-  
+  attr_reader :items,
+              :parent
+
   include CreateElements
 
   def initialize(data, parent)

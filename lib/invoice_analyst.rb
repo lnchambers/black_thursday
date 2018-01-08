@@ -43,8 +43,8 @@ module InvoiceAnalyst
     end
   end
 
-  def top_days_by_invoice_count
-
+  def calculate_invoice_day_stdev
+    # Math.sqrt(day_variance / ???).round(2)
   end
 
 end

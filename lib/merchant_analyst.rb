@@ -18,4 +18,8 @@ module MerchantAnalyst
     end
   end
 
+  def total_items_per_merchant(merchant)
+    items.find_all_by_merchant_id(merchant.id).count
+  end
+
 end
