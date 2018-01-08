@@ -1,4 +1,4 @@
-require 'pry'
+  require 'pry'
 require 'time'
 require_relative 'transaction_repo'
 
@@ -30,5 +30,4 @@ class Transaction
   def find_all_by_invoice_id(invoice_id)
     repository.find_all_by_invoice_id(invoice_id)
   end
-
 end

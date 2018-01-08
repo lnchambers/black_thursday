@@ -23,7 +23,15 @@ class Invoice
   end
 
   def merchant
-    @repository.find_merchant(@merchant_id)
+    repository.find_merchant(merchant_id)
+  end
+
+  def is_paid_in_full?
+    repository.find_paid_in_full(id)
+  end
+
+  def transactions
+    repository.find_transactions_by_invoice_id(id)
   end
 
 end

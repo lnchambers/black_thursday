@@ -25,17 +25,13 @@ class CustomerRepo
 
   def find_all_by_first_name(first_name)
     customers.values.find_all do |customer|
-      if customer.first_name.downcase.include?(first_name.downcase)
-        customer
-      end
+      customer.first_name.downcase.include?(first_name.downcase)
     end
   end
 
   def find_all_by_last_name(last_name)
     customers.values.find_all do |customer|
-      if customer.last_name.downcase.include?(last_name.downcase)
-        customer
-      end
+      customer.last_name.downcase.include?(last_name.downcase)
     end
   end
 end

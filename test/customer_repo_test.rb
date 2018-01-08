@@ -50,10 +50,10 @@ class CustomerRepositoryTest < Minitest::Test
     desired_customer2 = customers.customers[3]
     desired_customer3 = customers.customers[13]
     desired_customer4 = customers.customers[27]
-    desired_customers_normal = [desired_customer1, desired_customer2,
-                                desired_customer3]
-    desired_customers_edgecase = [desired_customer1, desired_customer2, desired_customer3,
-                                  desired_customer4]
+    desired_customers_normal   = [desired_customer1, desired_customer2,
+                                  desired_customer3]
+    desired_customers_edgecase = [desired_customer1, desired_customer2,
+                                  desired_customer3, desired_customer4]
 
     assert_instance_of Array, customers.find_all_by_last_name("Toy")
     assert_equal desired_customers_normal, customers.find_all_by_last_name("Toy")

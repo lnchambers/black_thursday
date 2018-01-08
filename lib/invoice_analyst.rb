@@ -64,7 +64,6 @@ module InvoiceAnalyst
 
   def transform_get_days
     get_days.transform_values do |invoice|
-      require "pry"; binding.pry
       invoice.count
     end
   end
