@@ -30,4 +30,8 @@ class Invoice
     repository.find_all_items(id)
   end
 
+  def transactions
+    repository.find_all_transactions(id)
+  end
+
 end
