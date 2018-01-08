@@ -19,12 +19,14 @@ class CustomerRepositoryTest < Minitest::Test
 
   def test_all_returns_array_of_customer_instances
     assert_instance_of Array, customers.all
-    assert_instance_of Customer, customers.all.first
     assert_equal 40, customers.all.count
+    customers.customers.each do |customer|
+      assert_instance_of Customer, customer[1]
+    end
   end
 
   def test_find_by_id_returns_correct_customer
-    assert_nil customers.find_by_id(99999)
+    assert_nil customers.find_by_id("99999")
 
     desired_customer = customers.customers[2]
 

@@ -34,10 +34,6 @@ module InvoiceAnalyst
     end
   end
 
-  def i_so_pale
-    system('say ~ I so pale')
-  end
-
   def transform_get_days
     get_days.transform_values do |invoice|
       invoice.count
