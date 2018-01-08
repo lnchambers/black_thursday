@@ -43,4 +43,14 @@ class SalesEngine
     invoice_items.find_by_id(id)
   end
 
+  def find_all_invoice_items(id)
+    invoice_items.find_all_by_invoice_id(id)
+  end
+
+  def find_items_for_invoice(id)
+    find_all_invoice_items(id).map do |invoice|
+      items.find_by_id(invoice.item_id)
+    end
+  end
+
 end
