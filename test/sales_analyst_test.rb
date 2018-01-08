@@ -142,7 +142,17 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_total_revenue_by_date
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
 
+    assert_equal 5, sa.total_revenue_by_date(Time.parse("2012-03-26"))
   end
 
 end
