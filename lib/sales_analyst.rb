@@ -141,6 +141,7 @@ class SalesAnalyst
   end
 
   def find_items_by_month(items, month)
+    binding.pry
     items.map do |item|
       item.created_at.strftime("%B") == month
     end
