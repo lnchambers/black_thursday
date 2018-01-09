@@ -162,29 +162,4 @@ class SalesAnalyst
       items.find_by_id(invoice_items.item_id)
     end
   end
-
-  def find_top_items(id)
-    maximum = find_max(id)
-    find_invoice_items_by_invoice(id).flatten.find_all do |invoice_item|
-      invoice_item.quantity == maximum.quantity
-    end
-  end
-
-  def find_max(id)
-    find_invoice_items_by_invoice(id).flatten.max_by do |invoice_item|
-      invoice_item.quantity
-    end
-  end
-
-  def find_invoice_items_by_invoice(id)
-    find_if_invoice_paid_in_full(id).map do |invoice|
-      invoice.invoice_items
-    end
-  end
-
-  def find_if_invoice_paid_in_full(id)
-    invoices.find_all_by_merchant_id(id).find_all do |invoice|
-      invoice.is_paid_in_full?
-    end
-  end
 end
