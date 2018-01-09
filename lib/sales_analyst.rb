@@ -145,15 +145,4 @@ class SalesAnalyst
       merchants.find_by_id(merchant_id)
     end
   end
-
-  def revenue_by_invoice_id
-    require "pry"; binding.pry
-    @sales_engine.invoice_items.all.values.sum do |invoice|
-    end
-  end
-
-  def top_revenue_earners(amount = 20)
-    revenue_by_invoice_id
-  end
-
 end
