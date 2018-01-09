@@ -61,6 +61,12 @@ class InvoiceRepo
    parent.find_customers_for_invoice(id)
  end
 
+ def pending_invoices
+   invoices.values.find_all do |invoice|
+     invoice.status == :pending
+   end
+ end
+
  def inspect
   "#<#{self.class} #{invoices.size} rows>"
  end

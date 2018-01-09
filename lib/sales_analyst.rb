@@ -122,6 +122,30 @@ class SalesAnalyst
     end
   end
 
+  def find_invoices_for_merchant(merchant_id)
+    all_invoices.values.find_all do |invoice|
+      invoice.is_paid_in_full? && invoice.merchant_id == merchant_id
+    end
+  end
+
+  def find_pending_invoices
+    all_invoices.values.find_all do |invoice|
+      !invoice.is_paid_in_full?
+    end
+  end
+
+  def find_pending_merchants
+    find_pending_invoices.map do |invoice|
+      invoice.merchant_id
+    end.uniq
+  end
+
+  def merchants_with_pending_invoices
+    find_pending_merchants.map do |merchant_id|
+      merchants.find_by_id(merchant_id)
+    end
+  end
+
   def merchants_with_only_one_item
     all_merchants.values.find_all do |merchant|
       merchant.items.count == 1

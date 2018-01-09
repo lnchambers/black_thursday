@@ -53,6 +53,10 @@ class MerchantRepo
     parent.find_customers_for_merchants(id)
   end
 
+  def find_all_invoices
+    parent.invoices.all
+  end
+
   def inspect
     "#<#{self.class} #{merchants.size} rows>"
   end
