@@ -135,13 +135,18 @@ class SalesAnalyst
   end
 
   def find_merchants_with_one_item_in_month(month)
-    all_merchants_with_items.find_all do |merchant|
-      find_items_by_month(merchant.values[0], month).count == 1
+    find_merchants_with_only_one_item.find_all do |merchant|
+      find_items_by_month(merchant.values[0], month).all?
     end
   end
 
+  # def find_merchants_with_one_item_in_month(month)
+  #   all_merchants_with_items.find_all do |merchant|
+  #     find_items_by_month(merchant.values[0], month).all?
+  #   end
+  # end
+
   def find_items_by_month(items, month)
-    binding.pry
     items.map do |item|
       item.created_at.strftime("%B") == month
     end
