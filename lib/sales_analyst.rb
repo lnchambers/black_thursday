@@ -158,11 +158,19 @@ class SalesAnalyst
   end
 
   def most_sold_item_for_merchant(id)
-    binding.pry
-    find_top_items(id)
+    find_top_items(id).flatten.map do |invoice_items|
+      items.find_by_id(invoice_items.item_id)
+    end
   end
 
   def find_top_items(id)
+    maximum = find_max(id)
+    find_invoice_items_by_invoice(id).flatten.find_all do |invoice_item|
+      invoice_item.quantity == maximum.quantity
+    end
+  end
+
+  def find_max(id)
     find_invoice_items_by_invoice(id).flatten.max_by do |invoice_item|
       invoice_item.quantity
     end
