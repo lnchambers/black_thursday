@@ -128,18 +128,6 @@ class SalesAnalyst
     end.flatten
   end
 
-  def find_merchant_with_only_one_item
-    all_merchants_with_items.find_all do |merchant|
-      merchant.values[0].count == 1
-    end
-  end
-
-  def all_merchants_with_items
-    all_merchants.values.reduce([]) do |result, merchant|
-      result << {merchant =>@sales_engine.find_item_by_merchant_id(merchant.id)}
-    end
-  end
-
   def top_revenue_earners(amount = 20)
     sort_by_revenue.map do |merchant|
       merchant[0]
@@ -155,7 +143,4 @@ class SalesAnalyst
   def total_revenue_by_merchant
 
   end
-
-  # get invoices, group_by merchant_id, return merchant by merchant_id
-
 end
