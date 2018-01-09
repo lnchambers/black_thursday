@@ -104,7 +104,6 @@ class SalesAnalyst
   end
 
   def total_revenue_by_date(date)
-    date = date.strftime("%D")
     get_invoice_items_for_revenue(date)[0].sum do |invoice_items|
       invoice_items.unit_price * invoice_items.quantity
     end
@@ -112,7 +111,7 @@ class SalesAnalyst
 
   def get_invoices_for_revenue(date)
     all_invoices.values.find_all do |invoice|
-      invoice.created_at.strftime("%D") == date
+      invoice.created_at.to_i == date.to_i
     end
   end
 
@@ -153,8 +152,31 @@ class SalesAnalyst
   end
 
   def merchants_with_only_one_item_registered_in_month(month)
-    merchants_with_only_one_item.select do |merchant|
+    merchants_with_only_one_item.find_all do |merchant|
       merchant.created_at.strftime("%B") == month
+    end
+  end
+
+  def most_sold_item_for_merchant(id)
+    binding.pry
+    find_top_items(id)
+  end
+
+  def find_top_items(id)
+    find_invoice_items_by_invoice(id).flatten.max_by do |invoice_item|
+      invoice_item.quantity
+    end
+  end
+
+  def find_invoice_items_by_invoice(id)
+    find_if_invoice_paid_in_full(id).map do |invoice|
+      invoice.invoice_items
+    end
+  end
+
+  def find_if_invoice_paid_in_full(id)
+    invoices.find_all_by_merchant_id(id).find_all do |invoice|
+      invoice.is_paid_in_full?
     end
   end
 end
