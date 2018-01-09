@@ -38,10 +38,6 @@ class Invoice
     repository.find_all_customers(customer_id)
   end
 
-  def items
-    repository.find_all_items(id)
-  end
-
   def invoice_items
     repository.find_all_invoice_items(id)
   end
