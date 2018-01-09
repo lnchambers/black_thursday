@@ -105,7 +105,7 @@ class SalesAnalyst
 
   def total_revenue_by_date(date)
     date = date.strftime("%D")
-    get_invoice_items_for_revenue(date).pop.sum do |invoice_items|
+    get_invoice_items_for_revenue(date)[0].sum do |invoice_items|
       invoice_items.unit_price * invoice_items.quantity
     end
   end
@@ -121,5 +121,27 @@ class SalesAnalyst
       @sales_engine.invoice_items.find_all_by_invoice_id(invoice.id)
     end
   end
+
+  def top_revenue_earners(amount = 20)
+    sort_by_revenue.map do |merchant|
+      merchant[0]
+    end.pop(amount).reverse
+  end
+
+  def sort_by_revenue
+    merchants_paired_with_total_revenue.sort_by do |key, value|
+      value
+    end
+  end
+
+  def total_revenue_by_merchant
+
+  end
+
+  def get_invoice_items_per_merchant
+
+  end
+
+  # get invoices, group_by merchant_id, return merchant by merchant_id
 
 end
