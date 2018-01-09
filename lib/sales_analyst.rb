@@ -123,10 +123,29 @@ class SalesAnalyst
   end
 
   def merchants_with_only_one_item
-    find_merchant_with_only_one_item.map do |merchant|
+    find_merchants_with_only_one_item.map do |merchant|
       merchant.keys
     end.flatten
   end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    find_merchants_with_one_item_in_month(month).map do |merchant|
+      merchant.keys
+    end.flatten
+  end
+
+  def find_merchants_with_one_item_in_month(month)
+    all_merchants_with_items.find_all do |merchant|
+      find_items_by_month(merchant.values[0], month).count == 1
+    end
+  end
+
+  def find_items_by_month(items, month)
+    items.map do |item|
+      item.created_at.strftime("%B") == month
+    end
+  end
+
 
   def top_revenue_earners(amount = 20)
     sort_by_revenue.map do |merchant|

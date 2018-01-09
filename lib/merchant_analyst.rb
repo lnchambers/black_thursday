@@ -28,7 +28,7 @@ module MerchantAnalyst
     end
   end
 
-  def find_merchant_with_only_one_item
+  def find_merchants_with_only_one_item
     all_merchants_with_items.find_all do |merchant|
       merchant.values[0].count == 1
     end
