@@ -105,7 +105,7 @@ class SalesAnalyst
 
   def total_revenue_by_date(date)
     date = date.strftime("%D")
-    get_invoice_items_for_revenue(date).pop.sum do |invoice_items|
+    get_invoice_items_for_revenue(date)[0].sum do |invoice_items|
       invoice_items.unit_price * invoice_items.quantity
     end
   end
@@ -143,6 +143,18 @@ class SalesAnalyst
   def merchants_with_pending_invoices
     find_pending_merchants.map do |merchant_id|
       merchants.find_by_id(merchant_id)
+    end
+  end
+
+  def merchants_with_only_one_item
+    all_merchants.values.find_all do |merchant|
+      merchant.items.count == 1
+    end
+  end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchants_with_only_one_item.select do |merchant|
+      merchant.created_at.strftime("%B") == month
     end
   end
 end
