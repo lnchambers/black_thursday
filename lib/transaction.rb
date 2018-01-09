@@ -32,7 +32,7 @@ class Transaction
   end
 
   def invoice
-     repository.find_invoices_for_transaction(invoice_id)
+    repository.find_invoices_for_transaction(invoice_id)
   end
 
 end
