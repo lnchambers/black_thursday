@@ -3,7 +3,10 @@ require './lib/customer_repo'
 require './lib/sales_engine'
 
 class CustomerRepositoryTest < Minitest::Test
-  attr_reader :customers
+
+  def customers
+    @customers
+  end
 
   def setup
     @sales_engine ||= SalesEngine.from_csv({
@@ -14,7 +17,7 @@ class CustomerRepositoryTest < Minitest::Test
       customers: './test/fixtures/customer_fixture.csv',
       transactions: './test/fixtures/transaction_fixture.csv'
       })
-    @customers ||= @sales_engine.customers
+      @customers ||= @sales_engine.customers
   end
 
   def test_all_returns_array_of_customer_instances

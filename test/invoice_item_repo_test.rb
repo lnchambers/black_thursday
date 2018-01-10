@@ -3,7 +3,10 @@ require './lib/invoice_repo'
 require './lib/sales_engine'
 
 class InvoiceItemRepoTest < Minitest::Test
-  attr_reader :invoice_items
+
+  def invoice_items
+    @invoice_items
+  end
 
   def setup
     @sales_engine ||= SalesEngine.from_csv({

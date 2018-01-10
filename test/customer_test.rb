@@ -3,7 +3,6 @@ require './lib/customer'
 require './lib/sales_engine'
 
 class CustomerTest < Minitest::Test
-  attr_reader :customer
 
   def setup
     repository = mock('repository')
