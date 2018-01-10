@@ -9,7 +9,6 @@ class Invoice
               :status,
               :created_at,
               :updated_at,
-              :successful,
               :repository
 
   def initialize(data, repository)
