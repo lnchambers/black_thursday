@@ -4,8 +4,10 @@ require './lib/sales_engine'
 require './lib/item_repo'
 
 class TransactionRepoTest < MiniTest::Test
-  attr_reader :transactions
 
+  def transactions
+    @transactions
+  end
 
   def setup
     @sales_engine ||= SalesEngine.from_csv({

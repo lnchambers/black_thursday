@@ -127,21 +127,15 @@ class SalesAnalyst
     end
   end
 
-  def find_pending_invoices
-    all_invoices.values.find_all do |invoice|
-      !invoice.is_paid_in_full?
+  def merchants_with_pending_invoices
+    all_merchants.values.find_all do |merchant|
+      find_invoices_per_merchant(merchant.id)
     end
   end
 
-  def find_pending_merchants
-    find_pending_invoices.map do |invoice|
-      invoice.merchant_id
-    end.uniq
-  end
-
-  def merchants_with_pending_invoices
-    find_pending_merchants.map do |merchant_id|
-      merchants.find_by_id(merchant_id)
+  def find_invoices_per_merchant(id)
+    @sales_engine.find_invoices(id).any? do |invoice|
+      !invoice.is_paid_in_full?
     end
   end
 
@@ -164,6 +158,6 @@ class SalesAnalyst
   end
 
   def best_item_for_merchant(id)
-    items.find_by_id(invoice_items.find_by_id(find_max_invoice_item(id)[0]).item_id)
+    items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
   end
 end
