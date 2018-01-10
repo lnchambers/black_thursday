@@ -121,12 +121,6 @@ class SalesAnalyst
     end
   end
 
-  def find_completed_invoices_for_merchant(id)
-    all_invoices.values.any? do |invoice|
-      invoice.is_paid_in_full? && invoice.merchant_id == id
-    end
-  end
-
   def revenue_by_merchant(id)
     @sales_engine.find_invoices(id).sum do |invoice|
       invoice.total
