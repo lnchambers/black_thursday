@@ -11,7 +11,8 @@ class SalesAnalyst
   include StandardDeviation
 
   def initialize(sales_engine)
-    @sales_engine = sales_engine
+    @sales_engine      = sales_engine
+    @merchants_revenue = find_@merchants_revenue
   end
 
   def average_items_per_merchant
@@ -122,7 +123,9 @@ class SalesAnalyst
   end
 
   def revenue_by_merchant(id)
-    all_merchants[id].revenue
+    @merchants_revenue.find_all do |merchant|
+      merchant[0].id == id
+    end
   end
 
   def merchants_with_pending_invoices
@@ -159,14 +162,14 @@ class SalesAnalyst
     items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
   end
 
-  def pair_merchants_with_revenue
-    all_merchants.values.map do |merchant|
-      [merchant, revenue_by_merchant(merchant.id)]
-    end
-  end
+  # def pair_merchants_with_revenue
+  #   all_merchants.values.map do |merchant|
+  #     [merchant, revenue_by_merchant(merchant.id)]
+  #   end
+  # end
 
   def sort_merchants_by_revenue
-    pair_merchants_with_revenue.sort_by do |merchant|
+    @merchants_revenue.sort_by do |merchant|
       merchant[1]
     end
   end
@@ -178,6 +181,6 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(amount = 20)
-    merchants_ranked_by_revenue.first(amount)
+    top_revenue ||= merchants_ranked_by_revenue.first(amount)
   end
 end

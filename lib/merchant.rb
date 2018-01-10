@@ -29,7 +29,7 @@ class Merchant
     repository.find_customers(id)
   end
 
-  def revenue
+  def calculate_revenue
     invoices.sum do |invoice|
       if invoice.is_paid_in_full?
         invoice.total
@@ -37,5 +37,9 @@ class Merchant
         0
       end
     end
+  end
+
+  def revenue
+    (revenue ||= calculate_revenue)
   end
 end
