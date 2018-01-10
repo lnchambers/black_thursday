@@ -164,12 +164,12 @@ class SalesAnalyst
   end
 
   def best_item_for_merchant(id)
-    items.find_by_id(match_invoice_with_price(id)[0])
+    # binding.pry
+    items.find_by_id(invoice_items.find_by_id(find_max_invoice_item(id)[0]).item_id)
   end
 
   def find_max_invoice_item(id)
     match_invoice_with_price(id).max_by do |invoice_item|
-      binding.pry
       invoice_item[1]
     end
   end

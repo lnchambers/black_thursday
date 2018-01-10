@@ -10,6 +10,10 @@ module InvoiceAnalyst
     invoices.invoices
   end
 
+  def invoice_items
+    @sales_engine.invoice_items
+  end
+
   def total_invoices
     @sales_engine.invoices.all.count.to_f
   end
