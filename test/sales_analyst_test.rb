@@ -200,6 +200,38 @@ class SalesAnalystTest < Minitest::Test
     assert_equal desired_merchants, sa.top_merchants_by_invoice_count
   end
 
+  def test_bottom_merchants_by_invoice_count
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_instance_of Array, sa.bottom_merchants_by_invoice_count
+    assert_equal [], sa.bottom_merchants_by_invoice_count
+  end
+
+  def test_total_with_status
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_instance_of Array, sa.total_with_status(:pending)
+    assert_equal 13, sa.total_with_status(:pending).count
+    assert_equal 25, sa.total_with_status(:shipped).count
+    assert_equal 2, sa.total_with_status(:returned).count
+  end
+
   def test_revenue_for_merchant
     sales_engine = SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
