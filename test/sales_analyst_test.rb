@@ -197,6 +197,8 @@ class SalesAnalystTest < Minitest::Test
     desired_merchant1 = sales_engine.merchants.merchants[9]
     desired_merchant2 = sales_engine.merchants.merchants[20]
     desired_merchants = [desired_merchant1, desired_merchant2]
+
+    assert_instance_of Array, sa.top_merchants_by_invoice_count
     assert_equal desired_merchants, sa.top_merchants_by_invoice_count
   end
 
@@ -245,6 +247,23 @@ class SalesAnalystTest < Minitest::Test
 
     assert_instance_of Array, sa.top_days_by_invoice_count
     assert_equal ["Saturday"], sa.top_days_by_invoice_count
+  end
+
+  def test_get_invoices_for_revenue_by_date
+    skip
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    date = Time.parse("2012-03-27 14:54:09 UTC")
+    assert_instance_of Array, sa.total_revenue_by_date(date)
+    assert_equal "", sa.total_revenue_by_date(date)
   end
 
   def test_revenue_for_merchant
