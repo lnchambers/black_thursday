@@ -22,10 +22,6 @@ class Transaction
     @repository                  = repository
   end
 
-  def find_by_id(id)
-    repository.find_by_id(id)
-  end
-
   def find_all_by_invoice_id(invoice_id)
     repository.find_all_by_invoice_id(invoice_id)
   end

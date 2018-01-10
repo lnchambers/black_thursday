@@ -122,13 +122,7 @@ class SalesAnalyst
   end
 
   def revenue_by_merchant(id)
-    @sales_engine.find_invoices(id).sum do |invoice|
-      if invoice.is_paid_in_full?
-        invoice.total
-      else
-        0
-      end
-    end
+    all_merchants[id].revenue
   end
 
   def merchants_with_pending_invoices
@@ -178,9 +172,9 @@ class SalesAnalyst
   end
 
   def merchants_ranked_by_revenue
-    sort_merchants_by_revenue.map do |merchant|
+    sort_merchants_by_revenue.reverse.map do |merchant|
       merchant[0]
-    end.flatten.reverse
+    end
   end
 
   def top_revenue_earners(amount = 20)

@@ -9,6 +9,7 @@ class Invoice
               :status,
               :created_at,
               :updated_at,
+              :successful,
               :repository
 
   def initialize(data, repository)
@@ -45,14 +46,10 @@ class Invoice
     repository.find_invoice(id)
   end
 
-  def successful_transactions
+  def is_paid_in_full?
     transactions.any? do |transaction|
       transaction.result == "success"
     end
-  end
-
-  def is_paid_in_full?
-    successful_transactions
   end
 
   def total
