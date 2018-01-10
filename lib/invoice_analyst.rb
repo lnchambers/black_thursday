@@ -73,7 +73,7 @@ module InvoiceAnalyst
     end
   end
 
-  def find_max_invoice_item(id)
+  def find_max_invoice(id)
     match_invoice_with_price(id).max_by do |invoice_item|
       invoice_item[1]
     end

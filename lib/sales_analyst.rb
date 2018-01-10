@@ -158,6 +158,6 @@ class SalesAnalyst
   end
 
   def best_item_for_merchant(id)
-    items.find_by_id(invoice_items.find_by_id(find_max_invoice_item(id)[0]).item_id)
+    items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
   end
 end
