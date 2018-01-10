@@ -53,8 +53,8 @@ class Invoice
   end
 
   def total
-    invoice_items.sum do |invoice|
-      invoice.unit_price * invoice.quantity
+    invoice_items.sum do |invoice_item|
+      invoice_item.total
     end
   end
 end
