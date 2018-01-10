@@ -56,7 +56,6 @@ class SalesAnalyst
   def average_average_price_per_merchant
     total = merchants.all.sum do |merchant|
       average_item_price_for_merchant(merchant.id)
-      require "pry"; binding.pry
     end
     (total / merchants.all.count).round(2)
   end
