@@ -1,6 +1,5 @@
-  require 'pry'
+require 'pry'
 require 'time'
-require_relative 'transaction_repo'
 
 class Transaction
   attr_reader :id,
