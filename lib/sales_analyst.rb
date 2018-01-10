@@ -164,6 +164,29 @@ class SalesAnalyst
   end
 
   def best_item_for_merchant(id)
+    items.find_by_id(match_invoice_with_price(id)[0])
+  end
+
+  def find_max_invoice_item(id)
+    match_invoice_with_price(id).max_by do |invoice_item|
+      binding.pry
+      invoice_item[1]
+    end
+  end
+
+  def match_invoice_with_price(id)
+    find_invoice_item_by_invoice(id).flatten.map do |invoice_item|
+      [invoice_item.id, invoice_item.total]
+    end
+  end
+
+  def find_invoice_item_by_invoice(id)
+    find_invoices_for_merchant_paid_in_full(id).map do |invoice|
+      invoice.invoice_items
+    end
+  end
+
+  def find_invoices_for_merchant_paid_in_full(id)
     merchants.find_by_id(id).invoices.find_all do |invoice|
       invoice.is_paid_in_full?
     end
