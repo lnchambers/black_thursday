@@ -121,9 +121,9 @@ class SalesAnalyst
     end
   end
 
-  def find_invoices_for_merchant(merchant_id)
+  def find_invoices_for_merchant(id)
     all_invoices.values.find_all do |invoice|
-      invoice.is_paid_in_full? && invoice.merchant_id == merchant_id
+      invoice.is_paid_in_full? && invoice.id == id
     end
   end
 
@@ -160,6 +160,12 @@ class SalesAnalyst
   def most_sold_item_for_merchant(id)
     find_top_items(id).flatten.map do |invoice_items|
       items.find_by_id(invoice_items.item_id)
+    end
+  end
+
+  def best_item_for_merchant(id)
+    merchants.find_by_id(id).invoices.find_all do |invoice|
+      invoice.is_paid_in_full?
     end
   end
 end
