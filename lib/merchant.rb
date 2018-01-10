@@ -28,4 +28,14 @@ class Merchant
   def customers
     repository.find_customers(id)
   end
+
+  def revenue
+    invoices.sum do |invoice|
+      if invoice.is_paid_in_full?
+        invoice.total
+      else
+        0
+      end
+    end
+  end
 end

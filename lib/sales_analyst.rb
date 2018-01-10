@@ -123,17 +123,21 @@ class SalesAnalyst
 
   def revenue_by_merchant(id)
     @sales_engine.find_invoices(id).sum do |invoice|
-      invoice.total
+      if invoice.is_paid_in_full?
+        invoice.total
+      else
+        0
+      end
     end
   end
 
   def merchants_with_pending_invoices
     all_merchants.values.find_all do |merchant|
-      find_invoices_per_merchant(merchant.id)
+      find_pending_invoices_per_merchant(merchant.id)
     end
   end
 
-  def find_invoices_per_merchant(id)
+  def find_pending_invoices_per_merchant(id)
     @sales_engine.find_invoices(id).any? do |invoice|
       !invoice.is_paid_in_full?
     end
@@ -159,5 +163,27 @@ class SalesAnalyst
 
   def best_item_for_merchant(id)
     items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
+  end
+
+  def pair_merchants_with_revenue
+    all_merchants.values.map do |merchant|
+      [merchant, revenue_by_merchant(merchant.id)]
+    end
+  end
+
+  def sort_merchants_by_revenue
+    pair_merchants_with_revenue.sort_by do |merchant|
+      merchant[1]
+    end
+  end
+
+  def merchants_ranked_by_revenue
+    sort_merchants_by_revenue.map do |merchant|
+      merchant[0]
+    end.flatten.reverse
+  end
+
+  def top_revenue_earners(amount = 20)
+    merchants_ranked_by_revenue.first(amount)
   end
 end
