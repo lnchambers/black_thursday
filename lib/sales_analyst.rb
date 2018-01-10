@@ -121,9 +121,9 @@ class SalesAnalyst
     end
   end
 
-  def find_invoices_for_merchant(id)
-    all_invoices.values.find_all do |invoice|
-      invoice.is_paid_in_full? && invoice.id == id
+  def revenue_by_merchant(id)
+    @sales_engine.find_invoices(id).sum do |invoice|
+      invoice.total
     end
   end
 
@@ -160,4 +160,5 @@ class SalesAnalyst
   def best_item_for_merchant(id)
     items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
   end
+
 end
