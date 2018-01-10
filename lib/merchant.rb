@@ -1,6 +1,5 @@
 require 'pry'
 require 'time'
-require_relative 'merchant_repo'
 
 class Merchant
 

@@ -1,6 +1,5 @@
 require 'pry'
 require 'time'
-require_relative 'invoice_repo'
 
 class Invoice
 
