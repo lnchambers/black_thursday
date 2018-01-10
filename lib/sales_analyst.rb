@@ -18,14 +18,6 @@ class SalesAnalyst
     (total_items / total_merchants).round(2)
   end
 
-  def mean_calculation_merchant(merchant)
-    (total_items_per_merchant(merchant) - average_items_per_merchant) ** 2
-  end
-
-  def average_items_per_merchant_standard_deviation
-    calculate_stdev(merchant_mean)
-  end
-
   def merchants_with_high_item_count
     merchant_stdev = average_items_per_merchant_standard_deviation
     all_merchants.values.find_all do |merchant|
@@ -50,8 +42,7 @@ class SalesAnalyst
     total = item_per_merchant.sum do |price|
       price.unit_price
     end
-    binding.pry
-    (total / item_per_merchant.count unless item_per_merchant.count == 0).round(2)
+    (total / item_per_merchant.count).round(2)
   end
 
   def average_average_price_per_merchant
