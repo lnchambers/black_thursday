@@ -45,8 +45,8 @@ class SalesAnalyst
     end
   end
 
-  def average_item_price_for_merchant(merchant_id)
-    item_per_merchant = @sales_engine.find_item_by_merchant_id(merchant_id)
+  def average_item_price_for_merchant(id)
+    item_per_merchant = @sales_engine.find_item_by_merchant_id(id)
     total = item_per_merchant.sum do |price|
       price.unit_price
     end
