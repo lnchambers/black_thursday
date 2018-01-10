@@ -22,4 +22,8 @@ require 'time'
    def unit_price_to_dollars
      @unit_price.to_f
    end
+
+   def total
+     quantity * unit_price
+   end
  end

@@ -1,6 +1,5 @@
 require 'pry'
 require_relative 'merchant'
-require_relative 'sales_engine'
 require_relative 'create_elements'
 
 class MerchantRepo
@@ -51,6 +50,10 @@ class MerchantRepo
 
   def find_customers(id)
     parent.find_customers_for_merchants(id)
+  end
+
+  def find_all_invoices
+    parent.invoices.all
   end
 
   def inspect

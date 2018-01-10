@@ -103,4 +103,61 @@ class SalesAnalyst
     end.keys
   end
 
+  def total_revenue_by_date(date)
+    get_invoice_items_for_revenue(date)[0].sum do |invoice_items|
+      invoice_items.unit_price * invoice_items.quantity
+    end
+  end
+
+  def get_invoices_for_revenue(date)
+    all_invoices.values.find_all do |invoice|
+      invoice.created_at.to_i == date.to_i
+    end
+  end
+
+  def get_invoice_items_for_revenue(date)
+    get_invoices_for_revenue(date).map do |invoice|
+      @sales_engine.invoice_items.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
+  def find_invoices_for_merchant(id)
+    all_invoices.values.find_all do |invoice|
+      invoice.is_paid_in_full? && invoice.id == id
+    end
+  end
+
+  def merchants_with_pending_invoices
+    all_merchants.values.find_all do |merchant|
+      find_invoices_per_merchant(merchant.id)
+    end
+  end
+
+  def find_invoices_per_merchant(id)
+    @sales_engine.find_invoices(id).any? do |invoice|
+      !invoice.is_paid_in_full?
+    end
+  end
+
+  def merchants_with_only_one_item
+    all_merchants.values.find_all do |merchant|
+      merchant.items.count == 1
+    end
+  end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchants_with_only_one_item.find_all do |merchant|
+      merchant.created_at.strftime("%B") == month
+    end
+  end
+
+  def most_sold_item_for_merchant(id)
+    find_top_items(id).flatten.map do |invoice_items|
+      items.find_by_id(invoice_items.item_id)
+    end
+  end
+
+  def best_item_for_merchant(id)
+    items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
+  end
 end
