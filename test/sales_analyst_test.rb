@@ -356,6 +356,38 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 0.5651551e5, sa.pair_merchants_with_revenue[0][1]
   end
 
+  def test_sort_merchants_by_revenue
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_instance_of Array, sa.sort_merchants_by_revenue
+    assert_instance_of Merchant, sa.sort_merchants_by_revenue[0][0]
+    assert_instance_of Merchant, sa.sort_merchants_by_revenue[-1][0]
+  end
+
+  def test_merchants_ranked_by_revenue
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_instance_of Array, sa.sort_merchants_by_revenue
+    assert_instance_of Merchant, sa.sort_merchants_by_revenue[0][0]
+    assert_instance_of Merchant, sa.sort_merchants_by_revenue[-1][0]
+  end
+
   def test_revenue_for_merchant
     sales_engine = SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
