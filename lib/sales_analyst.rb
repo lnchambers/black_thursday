@@ -170,6 +170,6 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(amount = 20)
-    top_revenue = merchants_ranked_by_revenue.first(amount)
+    merchants_ranked_by_revenue.first(amount)
   end
 end
