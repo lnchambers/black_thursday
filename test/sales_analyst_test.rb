@@ -141,6 +141,65 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 0.155e2, sa.average_item_price_for_merchant(1)
   end
 
+  def test_average_average_price_per_merchant
+    skip
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_equal 0.155e2, sa.average_average_price_per_merchant
+  end
+
+  def test_average_invoices_per_merchant
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_equal 1, sa.average_invoices_per_merchant
+  end
+
+  def test_average_invoices_per_merchant_standard_deviation
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+
+    assert_equal 1.75, sa.average_invoices_per_merchant_standard_deviation
+  end
+
+  def test_top_merchants_by_invoice_count
+    sales_engine = SalesEngine.from_csv({
+      items: 'test/fixtures/item_fixture.csv',
+      merchants: 'test/fixtures/merchant_fixture.csv',
+      invoices: './test/fixtures/invoice_fixture.csv',
+      invoice_items: './test/fixtures/invoice_item_fixture.csv',
+      customers: './test/fixtures/customer_fixture.csv',
+      transactions: './test/fixtures/transaction_fixture.csv'
+      })
+    sa = SalesAnalyst.new(sales_engine)
+    desired_merchant1 = sales_engine.merchants.merchants[9]
+    desired_merchant2 = sales_engine.merchants.merchants[20]
+    desired_merchants = [desired_merchant1, desired_merchant2]
+    assert_equal desired_merchants, sa.top_merchants_by_invoice_count
+  end
+
   def test_revenue_for_merchant
     sales_engine = SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
