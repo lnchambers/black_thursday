@@ -1,6 +1,5 @@
-  require 'pry'
+require 'pry'
 require 'time'
-require_relative 'transaction_repo'
 
 class Transaction
   attr_reader :id,
@@ -32,7 +31,7 @@ class Transaction
   end
 
   def invoice
-     repository.find_invoices_for_transaction(invoice_id)
+    repository.find_invoices_for_transaction(invoice_id)
   end
 
 end

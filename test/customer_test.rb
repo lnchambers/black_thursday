@@ -1,9 +1,8 @@
-require_relative 'test_helper'
+require './test/test_helper'
 require './lib/customer'
 require './lib/sales_engine'
 
 class CustomerTest < Minitest::Test
-  attr_reader :customer
 
   def setup
     repository = mock('repository')

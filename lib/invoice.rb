@@ -1,6 +1,5 @@
 require 'pry'
 require 'time'
-require_relative 'invoice_repo'
 
 class Invoice
 
@@ -36,10 +35,6 @@ class Invoice
 
   def customer
     repository.find_all_customers(customer_id)
-  end
-
-  def items
-    repository.find_all_items(id)
   end
 
   def invoice_items

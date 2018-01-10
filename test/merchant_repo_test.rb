@@ -1,10 +1,13 @@
-require_relative 'test_helper'
+require './test/test_helper'
 require './lib/merchant_repo'
 require './lib/sales_engine'
 require './lib/item_repo'
 
 class MerchantRepoTest < MiniTest::Test
-  attr_reader :merchants
+
+  def merchants
+    @merchants
+  end
 
   def setup
     @sales_engine ||= SalesEngine.from_csv({

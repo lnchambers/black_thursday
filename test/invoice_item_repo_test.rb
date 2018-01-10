@@ -3,8 +3,11 @@ require './lib/invoice_repo'
 require './lib/sales_engine'
 
 class InvoiceItemRepoTest < Minitest::Test
-  attr_reader :invoice_items
-  
+
+  def invoice_items
+    @invoice_items
+  end
+
   def setup
     @sales_engine ||= SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
@@ -19,12 +22,14 @@ class InvoiceItemRepoTest < Minitest::Test
 
   def test_all_method_returns_all_invoice_items
     assert_instance_of Array, invoice_items.all
-    assert_instance_of InvoiceItem, invoice_items.all.first
     assert_equal 40, invoice_items.all.count
+    invoice_items.invoice_items.each do |invoice_item|
+      assert_instance_of InvoiceItem, invoice_item[1]
+    end
   end
 
   def test_find_by_id_returns_correct_invoice_item
-    assert_nil invoice_items.find_by_id(2999)
+    assert_nil invoice_items.find_by_id("292323232323232399")
 
     desired_item_invoice = invoice_items.invoice_items[1]
 
@@ -32,7 +37,7 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
   def test_find_all_by_item_id_returns_correct_invoice_item
-    assert_equal [], invoice_items.find_all_by_item_id(99999)
+    assert_equal [], invoice_items.find_all_by_item_id("99999")
 
     desired_item_invoice1 = invoice_items.invoice_items[33]
     desired_item_invoice2 = invoice_items.invoice_items[34]
@@ -45,7 +50,7 @@ class InvoiceItemRepoTest < Minitest::Test
   end
 
   def test_find_all_by_invoice_id_returns_correct_invoice_item
-    assert_equal [], invoice_items.find_all_by_invoice_id(99999)
+    assert_equal [], invoice_items.find_all_by_invoice_id("hashashdsadha")
 
     desired_item_invoice1 = invoice_items.invoice_items[38]
     desired_item_invoice2 = invoice_items.invoice_items[39]
