@@ -122,9 +122,13 @@ class SalesAnalyst
   end
 
   def revenue_by_merchant(id)
-    @sales_engine.find_invoices(id).sum do |invoice|
+    @sales_engine.all_successful_transactions_by_merchant_id(id).sum do |invoice|
       invoice.total
     end
+  end
+
+  def merchants_ranked_by_revenue
+
   end
 
   def merchants_with_pending_invoices

@@ -29,6 +29,12 @@ class InvoiceRepo
    end
  end
 
+ def find_all_successful_transactions_by_merchant_id(id)
+   find_all_by_merchant_id(id).find_all do |invoice|
+     invoice.status == "success"
+   end
+ end
+
  def find_all_by_merchant_id(id)
    invoices.values.find_all do |invoice|
      invoice.merchant_id == id
