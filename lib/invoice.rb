@@ -45,6 +45,14 @@ class Invoice
     repository.find_invoice(id)
   end
 
+  def total_collected
+    if is_paid_in_full?
+      total
+    else
+      0
+    end
+  end
+
   def is_paid_in_full?
     transactions.any? do |transaction|
       transaction.result == "success"

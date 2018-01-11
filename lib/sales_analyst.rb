@@ -150,15 +150,15 @@ class SalesAnalyst
   def best_item_for_merchant(id)
     items.find_by_id(invoice_items.find_by_id(find_max_invoice(id)[0]).item_id)
   end
-
-  def pair_merchants_with_revenue
-    all_merchants.values.map do |merchant|
-      [merchant, revenue_by_merchant(merchant.id)]
-    end
-  end
+  #
+  # def pair_merchants_with_revenue
+  #   all_merchants.values.map do |merchant|
+  #     [merchant, revenue_by_merchant(merchant.id)]
+  #   end
+  # end
 
   def sort_merchants_by_revenue
-    pair_merchants_with_revenue.sort_by do |merchant|
+    @sales_engine.merchant_revenue.sort_by do |merchant|
       merchant[1]
     end
   end
