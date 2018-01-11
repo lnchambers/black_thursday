@@ -36,8 +36,8 @@ class InvoiceItemRepo
  def total(keys)
    invoice_items.values.reduce({}) do |result, invoice_item|
      if result.has_key?(invoice_item.invoice_id)
-       binding.pry
-       result[invoice_item.invoice_id] += invoice_item.total
+       result[invoice_item.invoice_id] = (result[invoice_item.invoice_id] += invoice_item.total)
+       result
      else
        result.merge({invoice_item.invoice_id => invoice_item.total})
      end
