@@ -23,6 +23,7 @@ class ItemRepoTest < Minitest::Test
 
   def test_repo_finds_all_items
     assert_instance_of Array, items.all
+    assert_instance_of SalesEngine, items.parent
     assert_equal 40, items.all.count
     items.items.each do |item|
       assert_instance_of Item, item[1]

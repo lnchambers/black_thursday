@@ -3,6 +3,10 @@ require './lib/item'
 
 class ItemTest < Minitest::Test
 
+  def item
+    @item
+  end
+
   def setup
     repository = mock('repository')
     data = {id: "1",
@@ -27,6 +31,12 @@ class ItemTest < Minitest::Test
   end
 
   def test_unit_price_to_dollars_returns_dollar_amount
-    assert_equal 50.0, @item.unit_price_to_dollars
+    assert_equal 50.0, item.unit_price_to_dollars
+  end
+
+  def test_can_find_merchant_by_merchant_id
+    item.repository.stubs(:find_merchant).with(123).returns(true)
+
+    assert item.merchant
   end
 end
