@@ -57,4 +57,9 @@ class InvoiceTest < Minitest::Test
     assert invoice.invoice_items
   end
 
+  def test_invoices
+    invoice.repository.stubs(:find_invoice).with(1).returns(true)
+
+    assert invoice.invoices
+  end
 end
