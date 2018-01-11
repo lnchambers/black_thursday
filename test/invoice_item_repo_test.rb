@@ -22,6 +22,7 @@ class InvoiceItemRepoTest < Minitest::Test
 
   def test_all_method_returns_all_invoice_items
     assert_instance_of Array, invoice_items.all
+    assert_instance_of SalesEngine, invoice_items.parent
     assert_equal 40, invoice_items.all.count
     invoice_items.invoice_items.each do |invoice_item|
       assert_instance_of InvoiceItem, invoice_item[1]

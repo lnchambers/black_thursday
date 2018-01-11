@@ -30,13 +30,13 @@ class MerchantRepo
 
   def find_by_name(name)
     merchants.values.find do |merchant|
-      return merchant if merchant.name.downcase.include? name.downcase
+      return merchant if merchant.name.downcase.include? name.to_s.downcase
     end
   end
 
   def find_all_by_name(name)
     merchants.values.find_all do |merchant|
-      merchant.name.downcase.include? name.downcase
+      merchant.name.downcase.include? name.to_s.downcase
     end
   end
 
