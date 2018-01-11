@@ -38,5 +38,4 @@ class InvoiceItemTest < Minitest::Test
   def test_total_returns_correct_amount
     assert_equal (BigDecimal.new(2000) / 100), invoice_item.total
   end
-
 end

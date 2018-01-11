@@ -4,7 +4,6 @@ require_relative 'create_elements'
 
 class MerchantRepo
   include CreateElements
-
   attr_reader :merchants,
               :parent
 
@@ -65,5 +64,4 @@ class MerchantRepo
   def inspect
     "#<#{self.class} #{merchants.size} rows>"
   end
-
 end

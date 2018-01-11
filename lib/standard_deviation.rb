@@ -14,5 +14,4 @@ module StandardDeviation
   def stdev(total, objects, population)
     Math.sqrt(variance(total, objects, population) / (objects - 1)).round(2)
   end
-
 end

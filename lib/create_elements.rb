@@ -7,5 +7,4 @@ module CreateElements
       row
     end
   end
-
 end

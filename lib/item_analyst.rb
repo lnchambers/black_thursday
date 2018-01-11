@@ -31,5 +31,4 @@ module ItemAnalyst
   def calculate_item_stdev
     Math.sqrt(item_variance / total_items)
   end
-
 end

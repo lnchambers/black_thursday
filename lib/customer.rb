@@ -17,5 +17,4 @@ class Customer
     @updated_at = Time.parse(data[:updated_at])
     @repository = data[:repository]
   end
-
 end

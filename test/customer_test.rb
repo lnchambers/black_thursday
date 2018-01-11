@@ -22,5 +22,4 @@ class CustomerTest < Minitest::Test
     assert_equal Time.parse("13:03"), @customer.created_at
     assert_equal Time.parse("13:05"), @customer.updated_at
   end
-
 end

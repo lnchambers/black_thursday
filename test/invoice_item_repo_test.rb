@@ -60,5 +60,4 @@ class InvoiceItemRepoTest < Minitest::Test
     assert_instance_of Array, invoice_items.find_all_by_invoice_id(8)
     assert_equal desired_item_invoices, invoice_items.find_all_by_invoice_id(8)
   end
-
 end

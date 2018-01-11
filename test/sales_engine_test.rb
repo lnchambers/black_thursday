@@ -63,5 +63,4 @@ class SalesEngineTest < Minitest::Test
     assert_equal [], sales_engine.find_customers_for_merchants("five")
     assert_equal [desired_customer], sales_engine.find_customers_for_merchants(5)
   end
-
 end
