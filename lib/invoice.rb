@@ -44,27 +44,27 @@ class Invoice
     repository.find_invoice(id)
   end
 
-  def successful_payment?
-    is_paid_in_full?
+  def is_paid_in_full?
+    if repository.successful_transaction(id) == "success"
+      true
+    else
+      false
+    end
   end
 
   def total_collected
     if is_paid_in_full?
-      total
+      repository.get_total(id)
     else
       0
     end
   end
 
-  def is_paid_in_full?
-    transactions.any? do |transaction|
-      transaction.result == "success"
-    end
+  def successful_transaction?
+    is_paid_in_full?
   end
 
   def total
-    invoice_items.sum do |invoice_item|
-      invoice_item.total
-    end
+    repository.get_total(id)
   end
 end

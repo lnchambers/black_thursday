@@ -44,6 +44,18 @@ module InvoiceAnalyst
     end
   end
 
+  def get_invoices_for_revenue(date)
+    all_invoices.values.find_all do |invoice|
+      invoice.created_at.to_i == date.to_i
+    end
+  end
+
+  def get_invoice_items_for_revenue(date)
+    get_invoices_for_revenue(date).map do |invoice|
+      @sales_engine.invoice_items.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
   def calculate_invoice_day_stdev
     stdev(total_invoices, 7, transform_get_days.values)
   end

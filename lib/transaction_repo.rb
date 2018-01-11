@@ -41,6 +41,16 @@ class TransactionRepo
     end
   end
 
+  def successful_transactions
+    transactions.values.reduce({}) do |result, transaction|
+      if transaction.result.include? "success"
+        result.merge({transaction.invoice_id => transaction.result})
+      else
+        result
+      end
+    end
+  end
+
   def find_all_by_result(result)
     transactions.values.find_all do |transaction|
       transaction.result == result

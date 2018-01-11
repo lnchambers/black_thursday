@@ -30,7 +30,11 @@ class Merchant
 
   def revenue
     invoices.sum do |invoice|
-      invoice.total_collected
+      if invoice.total_collected == nil
+        0
+      else
+        invoice.total_collected
+      end
     end
   end
 end

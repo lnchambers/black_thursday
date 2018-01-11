@@ -52,11 +52,6 @@ class SalesAnalyst
     (total / merchants.all.count).round(2)
   end
 
-  def calculate_stdev(mean)
-    variance = mean.sum / (mean.count - 1)
-    Math.sqrt(variance).round(2)
-  end
-
   def average_invoices_per_merchant
     mean(total_invoices, total_merchants).round(2)
   end
@@ -98,18 +93,6 @@ class SalesAnalyst
   def total_revenue_by_date(date)
     get_invoice_items_for_revenue(date)[0].sum do |invoice_items|
       invoice_items.unit_price * invoice_items.quantity
-    end
-  end
-
-  def get_invoices_for_revenue(date)
-    all_invoices.values.find_all do |invoice|
-      invoice.created_at.to_i == date.to_i
-    end
-  end
-
-  def get_invoice_items_for_revenue(date)
-    get_invoices_for_revenue(date).map do |invoice|
-      @sales_engine.invoice_items.find_all_by_invoice_id(invoice.id)
     end
   end
 
