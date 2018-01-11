@@ -67,6 +67,10 @@ class InvoiceRepo
    end
  end
 
+ def successful_transaction(id)
+   parent.transaction_data[id]
+ end
+
  def inspect
    "#<#{self.class} #{invoices.size} rows>"
  end
