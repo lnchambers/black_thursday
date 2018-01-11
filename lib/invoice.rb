@@ -55,13 +55,15 @@ class Invoice
 
   def total_collected
     if repository.successful_transaction(id) == "success"
-      repository.get_total(id)
+      total
     else
       0
     end
   end
-  
+
   def total
-    repository.get_total(id)
+    invoice_items.sum do |invoice_item|
+      invoice_item.total
+    end
   end
 end
