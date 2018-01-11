@@ -31,7 +31,6 @@ class SalesEngine
 
   def get_data
     @merchant_data = merchants.get_revenue
-    # @invoice_data  = invoices.successful_payment?
   end
 
   def find_merchants(id)

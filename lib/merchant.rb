@@ -29,9 +29,9 @@ class Merchant
     repository.find_customers(id)
   end
 
-  def revenue
-    invoices.sum do |invoice|
-      invoice.total_collected
-    end
-  end
+  # def revenue
+  #   invoices.sum do |invoice|
+  #     invoice.total_collected
+  #   end
+  # end
 end
