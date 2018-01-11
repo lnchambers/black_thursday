@@ -21,8 +21,13 @@ class MerchantRepoTest < MiniTest::Test
     @merchants = @sales_engine.merchants
   end
 
-  def test_it_can_find_all_merchants
+  def test_that_all_method_returns_all_merchant_instances
+    assert_instance_of Array, merchants.all
     assert_equal 40, merchants.all.count
+    assert_instance_of SalesEngine, merchants.parent
+    merchants.merchants.each do |merchant|
+      assert_instance_of Merchant, merchant[1]
+    end
   end
 
   def test_find_merchant_by_id

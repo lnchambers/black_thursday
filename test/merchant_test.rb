@@ -19,4 +19,5 @@ class MerchantTest < Minitest::Test
     assert_equal Time.parse("13:02"), @merchant.created_at
     assert_equal Time.parse("13:03"), @merchant.updated_at
   end
+
 end

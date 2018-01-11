@@ -4,6 +4,6 @@ SimpleCov.start do
 end
 
 require 'minitest/autorun'
-require 'minitest/pride'
+require 'minitest/emoji'
 require 'mocha/mini_test'
 require 'pry'

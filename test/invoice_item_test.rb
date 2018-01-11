@@ -35,4 +35,8 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 20.00, @invoice_item.unit_price_to_dollars
   end
 
+  def test_total_returns_correct_amount
+    assert_equal (BigDecimal.new(2000) / 100), invoice_item.total
+  end
+
 end
