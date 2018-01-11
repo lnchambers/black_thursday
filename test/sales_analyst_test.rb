@@ -7,7 +7,6 @@ class SalesAnalystTest < Minitest::Test
   def test_it_exists
     sales_engine = mock('sales_engine')
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
     assert_instance_of SalesAnalyst, sa
   end
 
@@ -21,7 +20,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 40, sa.total_merchants
   end
@@ -36,7 +34,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 40.0, sa.total_items
   end
@@ -51,7 +48,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 1.0, sa.average_items_per_merchant
   end
@@ -66,7 +62,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 0.96, sa.average_items_per_merchant_standard_deviation
   end
@@ -81,7 +76,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
     merchants = sales_engine.merchants.merchants
     desired_merchant1 = merchants[1]
     desired_merchant2 = merchants[5]
@@ -113,7 +107,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 30.43, sa.average_item_price_standard_deviation
   end
@@ -128,7 +121,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
     item = sales_engine.items.items
     desired_item1 = item[12]
 
@@ -145,7 +137,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 0.155e2, sa.average_item_price_for_merchant(1)
   end
@@ -160,7 +151,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 1, sa.average_invoices_per_merchant
   end
@@ -175,7 +165,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 1.75, sa.average_invoices_per_merchant_standard_deviation
   end
@@ -190,7 +179,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
     desired_merchant1 = sales_engine.merchants.merchants[9]
     desired_merchant2 = sales_engine.merchants.merchants[20]
     desired_merchants = [desired_merchant1, desired_merchant2]
@@ -209,7 +197,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.bottom_merchants_by_invoice_count
     assert_equal [], sa.bottom_merchants_by_invoice_count
@@ -225,7 +212,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.total_with_status(:pending)
     assert_equal 13, sa.total_with_status(:pending).count
@@ -243,7 +229,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.top_days_by_invoice_count
     assert_equal ["Saturday"], sa.top_days_by_invoice_count
@@ -259,7 +244,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     date = Time.parse("2009-02-07 00:00:00 -0700")
     assert_instance_of BigDecimal, sa.total_revenue_by_date(date)
@@ -276,7 +260,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.merchants_with_pending_invoices
     assert_equal 10, sa.merchants_with_pending_invoices.count
@@ -292,7 +275,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.merchants_with_only_one_item
     assert_equal 13, sa.merchants_with_only_one_item.count
@@ -308,7 +290,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.merchants_with_only_one_item_registered_in_month("January")
     assert_equal 4, sa.merchants_with_only_one_item_registered_in_month("January").count
@@ -324,7 +305,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.most_sold_item_for_merchant(2)
     assert_equal 1, sa.most_sold_item_for_merchant(3).count
@@ -340,7 +320,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
     desired_item = sales_engine.items.items[2]
 
     assert_instance_of Item, sa.best_item_for_merchant(3)
@@ -357,7 +336,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.sort_merchants_by_revenue
     assert_instance_of Merchant, sa.sort_merchants_by_revenue[0][0]
@@ -374,7 +352,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_instance_of Array, sa.sort_merchants_by_revenue
     assert_instance_of Merchant, sa.sort_merchants_by_revenue[0][0]
@@ -391,7 +368,6 @@ class SalesAnalystTest < Minitest::Test
       transactions: './test/fixtures/transaction_fixture.csv'
       })
     sa = SalesAnalyst.new(sales_engine)
-    binding.pry
 
     assert_equal 0.5651551e5, sa.revenue_by_merchant(1)
   end

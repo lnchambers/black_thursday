@@ -54,7 +54,7 @@ class Invoice
   end
 
   def total_collected
-    if repository.successful_transaction(id) == "success"
+    if is_paid_in_full?
       repository.get_total(id)
     else
       0
