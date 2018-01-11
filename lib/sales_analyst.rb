@@ -114,7 +114,7 @@ class SalesAnalyst
   end
 
   def revenue_by_merchant(id)
-    all_merchants[id].revenue
+    all_merchants[id].calculate_revenue
   end
 
   def merchants_with_pending_invoices
@@ -153,7 +153,7 @@ class SalesAnalyst
 
   def pair_merchants_with_revenue
     all_merchants.values.map do |merchant|
-      [merchant, revenue_by_merchant(merchant.id)]
+      merchant.calculate_revenue
     end
   end
 
