@@ -326,24 +326,7 @@ class SalesAnalystTest < Minitest::Test
     assert_equal desired_item, sa.best_item_for_merchant(3)
   end
 
-  def test_pair_merchants_with_revenue
-    skip
-    sales_engine = SalesEngine.from_csv({
-      items: 'test/fixtures/item_fixture.csv',
-      merchants: 'test/fixtures/merchant_fixture.csv',
-      invoices: './test/fixtures/invoice_fixture.csv',
-      invoice_items: './test/fixtures/invoice_item_fixture.csv',
-      customers: './test/fixtures/customer_fixture.csv',
-      transactions: './test/fixtures/transaction_fixture.csv'
-      })
-    sa = SalesAnalyst.new(sales_engine)
-
-    assert_instance_of Merchant, sa.pair_merchants_with_revenue[0][0]
-    assert_equal 0.5651551e5, sa.pair_merchants_with_revenue[0][1]
-  end
-
   def test_sort_merchants_by_revenue
-    skip
     sales_engine = SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv',
@@ -360,7 +343,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_merchants_ranked_by_revenue
-    skip
     sales_engine = SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv',
@@ -377,7 +359,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_revenue_for_merchant
-    skip
     sales_engine = SalesEngine.from_csv({
       items: 'test/fixtures/item_fixture.csv',
       merchants: 'test/fixtures/merchant_fixture.csv',
