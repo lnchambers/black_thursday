@@ -43,7 +43,7 @@ class TransactionRepo
 
   def successful_transactions
     transactions.values.reduce({}) do |result, transaction|
-      if transaction.result == "success"
+      if transaction.result.include? "success"
         result.merge({transaction.invoice_id => transaction.result})
       else
         result

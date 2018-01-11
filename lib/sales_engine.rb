@@ -33,8 +33,7 @@ class SalesEngine
 
   def get_data
     @transaction_data   = transactions.successful_transactions
-    # @invoice_item_data  = invoice_items.total(@transaction_data.keys)
-    # binding.pry
+    @invoice_item_data  = invoice_items.total(@transaction_data.keys)
     @merchant_data      = merchants.get_revenue
   end
 

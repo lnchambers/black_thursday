@@ -34,19 +34,14 @@ class InvoiceItemRepo
  end
 
  def total(keys)
-   find_invoice_items_by_invoice_id(keys).reduce({}) do |result, invoice_item|
-     if result[invoice_item.invoice_id] == invoice_item.invoice_id
+   invoice_items.values.reduce({}) do |result, invoice_item|
+     if result.has_key?(invoice_item.invoice_id)
+       binding.pry
        result[invoice_item.invoice_id] += invoice_item.total
      else
        result.merge({invoice_item.invoice_id => invoice_item.total})
      end
    end
- end
-
- def find_invoice_items_by_invoice_id(keys)
-   keys.map do |key|
-     find_all_by_invoice_id(key)
-   end.flatten
  end
 
  def find_all_by_invoice_id(id)
