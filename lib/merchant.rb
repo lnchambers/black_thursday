@@ -30,14 +30,8 @@ class Merchant
   end
 
   def revenue
-    calculate_revenue.sum do |invoice|
-      invoice.total
-    end
-  end
-
-  def calculate_revenue
-    invoices.find_all do |invoice|
-      invoice.is_paid_in_full?
+    invoices.sum do |invoice|
+      invoice.total_collected
     end
   end
 end

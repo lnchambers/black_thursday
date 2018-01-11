@@ -56,6 +56,12 @@ class MerchantRepo
     parent.invoices.all
   end
 
+  def get_revenue
+    merchants.map do |merchant|
+      [merchant[1], merchant[1].revenue]
+    end
+  end
+
   def inspect
     "#<#{self.class} #{merchants.size} rows>"
   end
