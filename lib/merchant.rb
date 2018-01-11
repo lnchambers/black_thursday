@@ -34,10 +34,4 @@ class Merchant
       invoice.total_collected
     end
   end
-
-  def calculate_revenue
-    invoices.find_all do |invoice|
-      invoice.is_paid_in_full?
-    end
-  end
 end

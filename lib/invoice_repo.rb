@@ -67,8 +67,14 @@ class InvoiceRepo
    end
  end
 
- def successful_payment?(id)
-   parent.successful_payment?(id)
+ def successful_payment?
+   invoices.values.reduce({}) do |result, invoice|
+     if invoice.is_paid_in_full?
+       result.merge({invoice.merchant_id => invoice.total})
+     else
+       result
+     end
+   end
  end
 
  def inspect

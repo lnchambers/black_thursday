@@ -158,7 +158,7 @@ class SalesAnalyst
   # end
 
   def sort_merchants_by_revenue
-    @sales_engine.merchant_revenue.sort_by do |merchant|
+    @sales_engine.merchant_data.sort_by do |merchant|
       merchant[1]
     end
   end

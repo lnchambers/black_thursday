@@ -13,7 +13,7 @@ class SalesEngine
               :invoice_items,
               :customers,
               :transactions,
-              :merchant_revenue
+              :merchant_data
 
   def initialize(data)
     @invoices      = InvoiceRepo.new(data[:invoices], self)
@@ -22,15 +22,16 @@ class SalesEngine
     @customers     = CustomerRepo.new(data[:customers], self)
     @transactions  = TransactionRepo.new(data[:transactions], self)
     @merchants     = MerchantRepo.new(data[:merchants], self)
-    relationships
+    get_data
   end
 
   def self.from_csv(data)
     SalesEngine.new(data)
   end
 
-  def relationships
-    @merchant_revenue = merchants.get_revenue
+  def get_data
+    @merchant_data = merchants.get_revenue
+    # @invoice_data  = invoices.successful_payment?
   end
 
   def find_merchants(id)
