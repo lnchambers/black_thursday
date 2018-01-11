@@ -61,6 +61,10 @@ class Invoice
     end
   end
 
+  def successful_transaction?
+    is_paid_in_full?
+  end
+
   def total
     repository.get_total(id)
   end
