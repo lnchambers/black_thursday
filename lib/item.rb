@@ -32,8 +32,4 @@ class Item
   def merchant
     @repository.find_merchant(@merchant_id)
   end
-
-  def merchants
-    @repository.merchant(@id)
-  end
 end

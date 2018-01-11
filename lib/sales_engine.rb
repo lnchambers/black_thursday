@@ -31,8 +31,9 @@ class SalesEngine
   end
 
   def get_data
-    @transaction_data = transactions.successful_transactions
-    @merchant_data    = merchants.get_revenue
+    @transaction_data   = transactions.successful_transactions
+    @invoice_items_data = invoice_items.total(@transaction_data.keys)
+    @merchant_data      = merchants.get_revenue
   end
 
   def find_merchants(id)
