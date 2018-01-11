@@ -12,6 +12,11 @@ module MerchantAnalyst
     @sales_engine.merchants.all.count.to_f
   end
 
+  def calculate_stdev(mean)
+    variance = mean.sum / (mean.count - 1)
+    Math.sqrt(variance).round(2)
+  end
+
   def merchant_mean
     merchants.all.map do |merchant|
       mean_calculation_merchant(merchant)

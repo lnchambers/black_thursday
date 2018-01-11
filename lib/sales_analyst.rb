@@ -52,11 +52,6 @@ class SalesAnalyst
     (total / merchants.all.count).round(2)
   end
 
-  def calculate_stdev(mean)
-    variance = mean.sum / (mean.count - 1)
-    Math.sqrt(variance).round(2)
-  end
-
   def average_invoices_per_merchant
     mean(total_invoices, total_merchants).round(2)
   end
