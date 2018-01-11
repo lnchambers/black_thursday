@@ -38,5 +38,4 @@ class InvoiceItemRepo
      invoice_item.invoice_id == id
    end
  end
-
 end
