@@ -45,10 +45,6 @@ class Invoice
     repository.find_invoice(id)
   end
 
-  # def successful_payment?
-  #   is_paid_in_full?
-  # end
-
   def total_collected
     if is_paid_in_full?
       total
