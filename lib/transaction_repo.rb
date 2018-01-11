@@ -35,8 +35,8 @@ class TransactionRepo
     end
   end
 
-  def successful_payment?(invoice_id)
-     find_all_by_invoice_id(invoice_id).any? do |transaction|
+  def successful_payment?(id)
+     find_all_by_invoice_id(id).any? do |transaction|
       transaction.result == "success"
     end
   end

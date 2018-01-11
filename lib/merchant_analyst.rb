@@ -21,4 +21,12 @@ module MerchantAnalyst
   def total_items_per_merchant(merchant)
     items.find_all_by_merchant_id(merchant.id).count
   end
+
+  def mean_calculation_merchant(merchant)
+    (total_items_per_merchant(merchant) - average_items_per_merchant) ** 2
+  end
+
+  def average_items_per_merchant_standard_deviation
+    calculate_stdev(merchant_mean)
+  end
 end

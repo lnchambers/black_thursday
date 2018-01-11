@@ -18,14 +18,6 @@ class SalesAnalyst
     (total_items / total_merchants).round(2)
   end
 
-  def mean_calculation_merchant(merchant)
-    (total_items_per_merchant(merchant) - average_items_per_merchant) ** 2
-  end
-
-  def average_items_per_merchant_standard_deviation
-    calculate_stdev(merchant_mean)
-  end
-
   def merchants_with_high_item_count
     merchant_stdev = average_items_per_merchant_standard_deviation
     all_merchants.values.find_all do |merchant|
@@ -122,13 +114,7 @@ class SalesAnalyst
   end
 
   def revenue_by_merchant(id)
-    @sales_engine.find_invoices(id).sum do |invoice|
-      if invoice.is_paid_in_full?
-        invoice.total
-      else
-        0
-      end
-    end
+    all_merchants[id].revenue
   end
 
   def merchants_with_pending_invoices
@@ -178,9 +164,9 @@ class SalesAnalyst
   end
 
   def merchants_ranked_by_revenue
-    sort_merchants_by_revenue.map do |merchant|
+    sort_merchants_by_revenue.reverse.map do |merchant|
       merchant[0]
-    end.flatten.reverse
+    end
   end
 
   def top_revenue_earners(amount = 20)

@@ -71,4 +71,9 @@ class SalesEngine
     end.uniq
   end
 
+  def successful_payment?(id)
+    transactions.successful_payment?(id)
+  end
+
+
 end
